@@ -6,6 +6,7 @@ cv2.setNumThreads(0)  # pytorch issue 1355: possible deadlock in dataloader
 # note: if you used our download scripts, this should be right
 VOCroot = '/home/user/Database/VOCdevkit'  # path to VOCdevkit root dir
 COCOroot = '/home/user/Database/MSCOCO2017'
+DOTAroot = '/media/raymond/MainDrive/Dataset/DOTA'
 
 # RFB CONFIGS
 VOC_300 = {

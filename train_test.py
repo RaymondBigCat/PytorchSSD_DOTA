@@ -14,7 +14,7 @@ import torch.utils.data as data
 from torch.autograd import Variable
 
 from data import VOCroot, COCOroot, VOC_300, VOC_512, COCO_300, COCO_512, COCO_mobile_300, AnnotationTransform, \
-    COCODetection, VOCDetection, detection_collate, BaseTransform, preproc
+    COCODetection, VOCDetection, detection_collate, BaseTransform, preproc, DOTADetection, DOTAroot
 from layers.functions import Detect, PriorBox
 from layers.modules import MultiBoxLoss
 from utils.nms_wrapper import nms
@@ -31,8 +31,8 @@ parser.add_argument('-v', '--version', default='SSD_vgg',
                     help='RFB_vgg ,RFB_E_vgg RFB_mobile SSD_vgg version.')
 parser.add_argument('-s', '--size', default='512',
                     help='300 or 512 input size.')
-parser.add_argument('-d', '--dataset', default='COCO',
-                    help='VOC or COCO dataset')
+parser.add_argument('-d', '--dataset', default='DOTA',
+                    help='VOC or COCO or DOTA dataset (Default is DOTA)')
 parser.add_argument(
     '--basenet', default='weights/vgg16_reducedfc.pth', help='pretrained base model')
 parser.add_argument('--jaccard_threshold', default=0.5,
@@ -89,9 +89,14 @@ log_file_path = save_folder + '/train' + time.strftime('_%Y-%m-%d-%H-%M', time.l
 if args.dataset == 'VOC':
     train_sets = [('2007', 'trainval'), ('2012', 'trainval')]
     cfg = (VOC_300, VOC_512)[args.size == '512']
-else:
+elif:
     train_sets = [('2017', 'train')]
     cfg = (COCO_300, COCO_512)[args.size == '512']
+    
+# add DOTA dataset
+elif:
+    train_sets = [('train_test')]
+    cfg = (VOC_300, VOC_512)[args.size == '512']
 
 '''
 选择网络
@@ -214,8 +219,12 @@ elif args.dataset == 'COCO':
         COCOroot, [('2017', 'val')], None)
     train_dataset = COCODetection(COCOroot, train_sets, preproc(
         img_dim, rgb_means, rgb_std, p))
+elif arg.dataset == 'DOTA':
+    train_dataset = DOTADetection(DOTAroot, train_sets, preproc(
+        img_dim, rgb_means, rgb_std, p), AnnotationTransform())
 else:
     print('Only VOC and COCO are supported now!')
+    print('Now, DOTA is supported.')
     exit()
 
 
