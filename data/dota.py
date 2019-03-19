@@ -7,10 +7,10 @@ import os
 import os.path
 import torch
 import torch.utils.data as data
-sys.path.append('/home/raymond/project/DOTA_PyTorch/DOTA_devkit') # 保证DOTA_devkit可用的关键
+sys.path.append('/home/raymond/project/PytorchSSD_DOTA/data') # 保证DOTA_devkit可用的关键
 import torchvision.transforms as transforms
 from PIL import Image
-from DOTA_devkit import dota_utils as util
+#from DOTA_devkit import dota_utils as util
 from DOTA_devkit import DOTA
 # from .voc_eval import voc_eval # VOCdevkit
 
@@ -22,6 +22,7 @@ VOC_CLASSES = ('__background__',  # always index 0
                'motorbike', 'person', 'pottedplant',
                'sheep', 'sofa', 'train', 'tvmonitor')
 """
+
 DOTA_CLASSES = ('plane', 'baseball-diamond', 'bridge', 'ground-track-field', 'small-vehicle', 'large-vehicle', 'ship', 'tennis-court',
                'basketball-court', 'storage-tank',  'soccer-ball-field', 'roundabout', 'harbor', 'swimming-pool', 'helicopter')
 

@@ -17,8 +17,6 @@ import torch
 import torch.utils.data as data
 import torchvision.transforms as transforms
 from PIL import Image
-from DOTA_devkit import dota_utils as util
-from DOTA_devkit import DOTA
 
 from .voc_eval import voc_eval
 

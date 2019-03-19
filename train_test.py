@@ -6,15 +6,16 @@ import time
 
 import numpy as np
 import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "1" #设置GPU1可见
 import torch
 import torch.backends.cudnn as cudnn
 import torch.nn.init as init
 import torch.optim as optim
 import torch.utils.data as data
 from torch.autograd import Variable
-
+import sys
 from data import VOCroot, COCOroot, VOC_300, VOC_512, COCO_300, COCO_512, COCO_mobile_300, AnnotationTransform, \
-    COCODetection, VOCDetection, detection_collate, BaseTransform, preproc, DOTADetection, DOTAroot
+    COCODetection, VOCDetection, detection_collate, BaseTransform, preproc, DOTADetection, DOTAroot,DotaAnnTrans
 from layers.functions import Detect, PriorBox
 from layers.modules import MultiBoxLoss
 from utils.nms_wrapper import nms
@@ -43,7 +44,7 @@ parser.add_argument('--num_workers', default=4,
                     type=int, help='Number of workers used in dataloading')
 parser.add_argument('--cuda', default=True,
                     type=bool, help='Use cuda to train model')
-parser.add_argument('--ngpu', default=2, type=int, help='gpus')
+parser.add_argument('--ngpu', default=1, type=int, help='gpus')
 parser.add_argument('--lr', '--learning-rate',
                     default=4e-3, type=float, help='initial learning rate')
 parser.add_argument('--momentum', default=0.9, type=float, help='momentum')
@@ -89,12 +90,12 @@ log_file_path = save_folder + '/train' + time.strftime('_%Y-%m-%d-%H-%M', time.l
 if args.dataset == 'VOC':
     train_sets = [('2007', 'trainval'), ('2012', 'trainval')]
     cfg = (VOC_300, VOC_512)[args.size == '512']
-elif:
+elif args.dataset == 'COCO':
     train_sets = [('2017', 'train')]
     cfg = (COCO_300, COCO_512)[args.size == '512']
     
 # add DOTA dataset
-elif:
+elif args.dataset == 'DOTA':
     train_sets = [('train_test')]
     cfg = (VOC_300, VOC_512)[args.size == '512']
 
@@ -219,9 +220,9 @@ elif args.dataset == 'COCO':
         COCOroot, [('2017', 'val')], None)
     train_dataset = COCODetection(COCOroot, train_sets, preproc(
         img_dim, rgb_means, rgb_std, p))
-elif arg.dataset == 'DOTA':
-    train_dataset = DOTADetection(DOTAroot, train_sets, preproc(
-        img_dim, rgb_means, rgb_std, p), AnnotationTransform())
+elif args.dataset == 'DOTA':
+    train_dataset = DOTADetection(DOTAroot, image_sets='train_test',preproc=preproc(
+        img_dim, rgb_means, rgb_std, p), target_transform=DotaAnnTrans())
 else:
     print('Only VOC and COCO are supported now!')
     print('Now, DOTA is supported.')
@@ -297,10 +298,12 @@ def train():
                     log_file.write(str(iteration) + ' APs:\n' + '\n'.join(APs))
                     log_file.write('mAP:\n' + mAP + '\n')
                 else:
+                    """
                     test_net(test_save_dir, net, detector, args.cuda, testset,
                              BaseTransform(net.module.size, rgb_means, rgb_std, (2, 0, 1)),
                              top_k, thresh=0.01)
-
+                    """
+                    pass
                 net.train()
             epoch += 1
 
