@@ -28,9 +28,9 @@ def str2bool(v):
 
 parser = argparse.ArgumentParser(
     description='Receptive Field Block Net Training')
-parser.add_argument('-v', '--version', default='SSD_vgg',
+parser.add_argument('-v', '--version', default='RFB_vgg',
                     help='RFB_vgg ,RFB_E_vgg RFB_mobile SSD_vgg version.')
-parser.add_argument('-s', '--size', default='512',
+parser.add_argument('-s', '--size', default='300',
                     help='300 or 512 input size.')
 parser.add_argument('-d', '--dataset', default='DOTA',
                     help='VOC or COCO or DOTA dataset (Default is DOTA)')
@@ -38,7 +38,7 @@ parser.add_argument(
     '--basenet', default='weights/vgg16_reducedfc.pth', help='pretrained base model')
 parser.add_argument('--jaccard_threshold', default=0.5,
                     type=float, help='Min Jaccard index for matching')
-parser.add_argument('-b', '--batch_size', default=8,
+parser.add_argument('-b', '--batch_size', default=16,
                     type=int, help='Batch size for training')
 parser.add_argument('--num_workers', default=4,
                     type=int, help='Number of workers used in dataloading')
@@ -84,24 +84,16 @@ if not os.path.exists(test_save_dir):
 
 log_file_path = save_folder + '/train' + time.strftime('_%Y-%m-%d-%H-%M', time.localtime(time.time())) + '.log'
 
-'''
+"""
 输入进行train的数据集
-'''
-if args.dataset == 'VOC':
-    train_sets = [('2007', 'trainval'), ('2012', 'trainval')]
-    cfg = (VOC_300, VOC_512)[args.size == '512']
-elif args.dataset == 'COCO':
-    train_sets = [('2017', 'train')]
-    cfg = (COCO_300, COCO_512)[args.size == '512']
-    
+"""  
 # add DOTA dataset
-elif args.dataset == 'DOTA':
+if args.dataset == 'DOTA':
     train_sets = [('train_test')]
     cfg = (VOC_300, VOC_512)[args.size == '512']
-
-'''
+"""
 选择网络
-'''
+"""
 if args.version == 'RFB_vgg':
     from models.RFB_Net_vgg import build_net
 elif args.version == 'RFB_E_vgg':
@@ -118,6 +110,10 @@ elif args.version == 'FRFBSSD_vgg':
     from models.FRFBSSD_vgg import build_net
 else:
     print('Unkown version!')
+
+"""
+归一化参数
+"""
 rgb_std = (1, 1, 1)
 img_dim = (300, 512)[args.size == '512']
 if 'vgg' in args.version:
@@ -126,28 +122,47 @@ elif 'mobile' in args.version:
     rgb_means = (103.94, 116.78, 123.68)
 
 p = (0.6, 0.2)[args.version == 'RFB_mobile']
-num_classes = (21, 81)[args.dataset == 'COCO']
+"""
+选择总类别数
+"""
+if args.dataset == 'DOTA':
+    num_classes = 2
+"""
+超参数
+"""
 batch_size = args.batch_size
 weight_decay = 0.0005
 gamma = 0.1
 momentum = 0.9
+"""
+visdom可视化部分
+"""
 if args.visdom:
     import visdom
 
     viz = visdom.Visdom()
-
+"""
+生成网络,models/SSD_vgg.py
+net是nn.Module类的一个实例
+"""
 net = build_net(img_dim, num_classes)
 print(net)
+
+"""
+如果不需要恢复训练，则开始从头训练
+"""
 if not args.resume_net:
+    # 加载预训练模型
     base_weights = torch.load(args.basenet)
     print('Loading base network...')
+    # 向网络输入预训练模型的参数
     net.base.load_state_dict(base_weights)
 
 
     def xavier(param):
         init.xavier_uniform(param)
 
-
+    #解析预训练模型权值
     def weights_init(m):
         for key in m.state_dict():
             if key.split('.')[-1] == 'weight':
@@ -161,6 +176,7 @@ if not args.resume_net:
 
     print('Initializing weights...')
     # initialize newly added layers' weights with kaiming_normal method
+    # .extras,.loc,.conf都是nn.ModuleList
     net.extras.apply(weights_init)
     net.loc.apply(weights_init)
     net.conf.apply(weights_init)
@@ -172,8 +188,7 @@ if not args.resume_net:
     if args.version == 'RFB_E_vgg':
         net.reduce.apply(weights_init)
         net.up_reduce.apply(weights_init)
-
-else:
+else: #恢复训练
     # load resume network
     resume_net_path = os.path.join(save_folder, args.version + '_' + args.dataset + '_epoches_' + \
                                    str(args.resume_epoch) + '.pth')
@@ -192,9 +207,10 @@ else:
         new_state_dict[name] = v
     net.load_state_dict(new_state_dict)
 
+# 支持多GPU
 if args.ngpu > 1:
     net = torch.nn.DataParallel(net, device_ids=list(range(args.ngpu)))
-
+# 支持GPU加速
 if args.cuda:
     net.cuda()
     cudnn.benchmark = True
@@ -221,8 +237,8 @@ elif args.dataset == 'COCO':
     train_dataset = COCODetection(COCOroot, train_sets, preproc(
         img_dim, rgb_means, rgb_std, p))
 elif args.dataset == 'DOTA':
-    train_dataset = DOTADetection(DOTAroot, image_sets='train_test',preproc=preproc(
-        img_dim, rgb_means, rgb_std, p), target_transform=DotaAnnTrans())
+    train_dataset = DOTADetection(DOTAroot, image_sets='splittest',preproc=preproc(
+        img_dim, rgb_means, rgb_std, p), target_transform=DotaAnnTrans(),catNms=['plane', 'small-vehicle', 'large-vehicle', 'ship'])
 else:
     print('Only VOC and COCO are supported now!')
     print('Now, DOTA is supported.')
@@ -275,17 +291,24 @@ def train():
     batch_iterator = None
     mean_loss_c = 0
     mean_loss_l = 0
+    epoch_time = 0
     for iteration in range(start_iter, max_iter + 10):
         if (iteration % epoch_size == 0):
             # create batch iterator
+            # 当上一个epoch全部训练完后
+            # 生成一个新的epoch（迭代器）（所有图；乱序）
             batch_iterator = iter(data.DataLoader(train_dataset, batch_size,
                                                   shuffle=True, num_workers=args.num_workers,
                                                   collate_fn=detection_collate))
             loc_loss = 0
             conf_loss = 0
+            # epoch_time
+            print('Epoch time: %.4f sec'%(epoch_time))
+            epoch_time = 0
             if epoch % args.save_frequency == 0 and epoch > 0:
                 torch.save(net.state_dict(), os.path.join(save_folder, args.version + '_' + args.dataset + '_epoches_' +
                                                           repr(epoch) + '.pth'))
+            # 一个epoch训练完后，测试网络
             if epoch % args.test_frequency == 0 and epoch > 0:
                 net.eval()
                 top_k = (300, 200)[args.dataset == 'COCO']
@@ -346,6 +369,7 @@ def train():
         loss.backward()
         optimizer.step()
         load_t1 = time.time()
+        epoch_time += load_t1 - load_t0
         if iteration % 10 == 0:
             print('Epoch:' + repr(epoch) + ' || epochiter: ' + repr(iteration % epoch_size) + '/' + repr(epoch_size)
                   + '|| Totel iter ' +
@@ -381,92 +405,6 @@ def adjust_learning_rate(optimizer, gamma, epoch, step_index, iteration, epoch_s
     for param_group in optimizer.param_groups:
         param_group['lr'] = lr
     return lr
-
-
-def test_net(save_folder, net, detector, cuda, testset, transform, max_per_image=300, thresh=0.005):
-    if not os.path.exists(save_folder):
-        os.mkdir(save_folder)
-    # dump predictions and assoc. ground truth to text file for now
-    num_images = len(testset)
-    num_classes = (21, 81)[args.dataset == 'COCO']
-    all_boxes = [[[] for _ in range(num_images)]
-                 for _ in range(num_classes)]
-
-    _t = {'im_detect': Timer(), 'misc': Timer()}
-    det_file = os.path.join(save_folder, 'detections.pkl')
-
-    if args.retest:
-        f = open(det_file, 'rb')
-        all_boxes = pickle.load(f)
-        print('Evaluating detections')
-        testset.evaluate_detections(all_boxes, save_folder)
-        return
-
-    for i in range(num_images):
-        img = testset.pull_image(i)
-        x = Variable(transform(img).unsqueeze(0), volatile=True)
-        if cuda:
-            x = x.cuda()
-
-        _t['im_detect'].tic()
-        out = net(x=x, test=True)  # forward pass
-        boxes, scores = detector.forward(out, priors)
-        detect_time = _t['im_detect'].toc()
-        boxes = boxes[0]
-        scores = scores[0]
-
-        boxes = boxes.cpu().numpy()
-        scores = scores.cpu().numpy()
-        # scale each detection back up to the image
-        scale = torch.Tensor([img.shape[1], img.shape[0],
-                              img.shape[1], img.shape[0]]).cpu().numpy()
-        boxes *= scale
-
-        _t['misc'].tic()
-
-        for j in range(1, num_classes):
-            inds = np.where(scores[:, j] > thresh)[0]
-            if len(inds) == 0:
-                all_boxes[j][i] = np.empty([0, 5], dtype=np.float32)
-                continue
-            c_bboxes = boxes[inds]
-            c_scores = scores[inds, j]
-            c_dets = np.hstack((c_bboxes, c_scores[:, np.newaxis])).astype(
-                np.float32, copy=False)
-            if args.dataset == 'VOC':
-                cpu = False
-            else:
-                cpu = False
-
-            keep = nms(c_dets, 0.45, force_cpu=cpu)
-            keep = keep[:50]
-            c_dets = c_dets[keep, :]
-            all_boxes[j][i] = c_dets
-        if max_per_image > 0:
-            image_scores = np.hstack([all_boxes[j][i][:, -1] for j in range(1, num_classes)])
-            if len(image_scores) > max_per_image:
-                image_thresh = np.sort(image_scores)[-max_per_image]
-                for j in range(1, num_classes):
-                    keep = np.where(all_boxes[j][i][:, -1] >= image_thresh)[0]
-                    all_boxes[j][i] = all_boxes[j][i][keep, :]
-
-        nms_time = _t['misc'].toc()
-
-        if i % 20 == 0:
-            print('im_detect: {:d}/{:d} {:.3f}s {:.3f}s'
-                  .format(i + 1, num_images, detect_time, nms_time))
-            _t['im_detect'].clear()
-            _t['misc'].clear()
-
-    with open(det_file, 'wb') as f:
-        pickle.dump(all_boxes, f, pickle.HIGHEST_PROTOCOL)
-
-    print('Evaluating detections')
-    if args.dataset == 'VOC':
-        APs, mAP = testset.evaluate_detections(all_boxes, save_folder)
-        return APs, mAP
-    else:
-        testset.evaluate_detections(all_boxes, save_folder)
 
 
 if __name__ == '__main__':

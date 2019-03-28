@@ -13,7 +13,7 @@ from PIL import Image
 #from DOTA_devkit import dota_utils as util
 from DOTA_devkit import DOTA
 # from .voc_eval import voc_eval # VOCdevkit
-
+# from config import DOTA_CLASSES
 """
 VOC_CLASSES = ('__background__',  # always index 0
                'aeroplane', 'bicycle', 'bird', 'boat',
@@ -22,10 +22,11 @@ VOC_CLASSES = ('__background__',  # always index 0
                'motorbike', 'person', 'pottedplant',
                'sheep', 'sofa', 'train', 'tvmonitor')
 """
-
-DOTA_CLASSES = ('plane', 'baseball-diamond', 'bridge', 'ground-track-field', 'small-vehicle', 'large-vehicle', 'ship', 'tennis-court',
+"""
+DOTA_CLASSES = ('__background__', 'plane', 'baseball-diamond', 'bridge', 'ground-track-field', 'small-vehicle', 'large-vehicle', 'ship', 'tennis-court',
                'basketball-court', 'storage-tank',  'soccer-ball-field', 'roundabout', 'harbor', 'swimming-pool', 'helicopter')
-
+"""
+DOTA_CLASSES = ('__background__', 'plane')
 class DotaAnnTrans:
     """Transforms a DOTA annotation into a Tensor of bbox coords and label index
     Initilized with a dictionary lookup of classnames to indexes
@@ -143,9 +144,10 @@ class DOTADetection(data.Dataset):
         
     def __getitem__(self, index):
         img_id = self.imgIDs[index]
+        # print('loading image:%s'%img_id)
         # 调用DOTA devkit 的方法load imgs（背后是cv2的imread）
         img = self.dataset.loadImgs(img_id)[0]
-        target = self.dataset.loadAnns(imgId=img_id)
+        target = self.dataset.loadAnns(imgId=img_id,catNms=self.catNms)
         # target 即是 Label
         # 
         # img = cv2.imread(self._imgpath % img_id, cv2.IMREAD_COLOR)
@@ -169,3 +171,35 @@ class DOTADetection(data.Dataset):
 
     def __len__(self):
         return len(self.imgIDs)
+    
+    def pull_image(self, index):
+        '''Returns the original image object at index in PIL form
+
+        Note: not using self.__getitem__(), as any transformations passed in
+        could mess up this functionality.
+
+        Argument:
+            index (int): index of img to show
+        Return:
+            PIL img
+        '''
+        img_id = self.imgIDs[index]
+        img = self.dataset.loadImgs(img_id)[0]
+        return img
+    
+    def pull_anno(self, index):
+        '''Returns the original annotation of image at index
+
+        Note: not using self.__getitem__(), as any transformations passed in
+        could mess up this functionality.
+
+        Argument:
+            index (int): index of img to get annotation of
+        Return:
+            list:  [img_id, [(label, bbox coords),...]]
+                eg: ('001718', [('dog', (96, 13, 438, 332))])
+        '''
+        img_id = self.imgIDs[index]
+        anno = ET.parse(self._annopath % img_id).getroot()
+        gt = self.target_transform(anno, 1, 1)
+        return img_id[1], gt
