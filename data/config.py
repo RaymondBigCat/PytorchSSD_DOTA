@@ -9,7 +9,7 @@ COCOroot = '/home/user/Database/MSCOCO2017'
 DOTAroot = '/media/raymond/MainDrive/Dataset/DOTA'
 
 # DOTA_CLASSES
-# DOTA_CLASSES = ('__background__', 'plane')
+DOTA_CLASSES = ('__background__', 'plane')
 # RFB CONFIGS
 VOC_300 = {
     'feature_maps': [38, 19, 10, 5, 3, 1],

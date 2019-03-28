@@ -6,7 +6,7 @@ import time
 
 import numpy as np
 import os
-os.environ["CUDA_VISIBLE_DEVICES"] = "1" #设置GPU1可见
+os.environ["CUDA_VISIBLE_DEVICES"] = "0" #设置GPU0可见
 import torch
 import torch.backends.cudnn as cudnn
 import torch.nn.init as init
@@ -15,7 +15,7 @@ import torch.utils.data as data
 from torch.autograd import Variable
 import sys
 from data import VOCroot, COCOroot, VOC_300, VOC_512, COCO_300, COCO_512, COCO_mobile_300, AnnotationTransform, \
-    COCODetection, VOCDetection, detection_collate, BaseTransform, preproc, DOTADetection, DOTAroot,DotaAnnTrans
+    COCODetection, VOCDetection, detection_collate, BaseTransform, preproc, DOTADetection, DOTAroot,DotaAnnTrans,DOTA_CLASSES
 from layers.functions import Detect, PriorBox
 from layers.modules import MultiBoxLoss
 from utils.nms_wrapper import nms
@@ -38,7 +38,7 @@ parser.add_argument(
     '--basenet', default='weights/vgg16_reducedfc.pth', help='pretrained base model')
 parser.add_argument('--jaccard_threshold', default=0.5,
                     type=float, help='Min Jaccard index for matching')
-parser.add_argument('-b', '--batch_size', default=16,
+parser.add_argument('-b', '--batch_size', default=32,
                     type=int, help='Batch size for training')
 parser.add_argument('--num_workers', default=4,
                     type=int, help='Number of workers used in dataloading')
@@ -75,7 +75,8 @@ parser.add_argument('--send_images_to_visdom', type=str2bool, default=False,
                     help='Sample a random image from each 10th batch, send it to visdom after augmentations step')
 args = parser.parse_args()
 
-save_folder = os.path.join(args.save_folder, args.version + '_' + args.size, args.date)
+save_date = time.strftime('%Y-%m-%d %H:%M',time.localtime(time.time()))
+save_folder = os.path.join(args.save_folder, args.version + '_' + args.size,save_date)
 if not os.path.exists(save_folder):
     os.makedirs(save_folder)
 test_save_dir = os.path.join(save_folder, 'ss_predict')
@@ -89,7 +90,7 @@ log_file_path = save_folder + '/train' + time.strftime('_%Y-%m-%d-%H-%M', time.l
 """  
 # add DOTA dataset
 if args.dataset == 'DOTA':
-    train_sets = [('train_test')]
+    train_sets = 'splittest'
     cfg = (VOC_300, VOC_512)[args.size == '512']
 """
 选择网络
@@ -126,7 +127,7 @@ p = (0.6, 0.2)[args.version == 'RFB_mobile']
 选择总类别数
 """
 if args.dataset == 'DOTA':
-    num_classes = 2
+    num_classes = len(DOTA_CLASSES)
 """
 超参数
 """
@@ -237,8 +238,8 @@ elif args.dataset == 'COCO':
     train_dataset = COCODetection(COCOroot, train_sets, preproc(
         img_dim, rgb_means, rgb_std, p))
 elif args.dataset == 'DOTA':
-    train_dataset = DOTADetection(DOTAroot, image_sets='splittest',preproc=preproc(
-        img_dim, rgb_means, rgb_std, p), target_transform=DotaAnnTrans(),catNms=['plane', 'small-vehicle', 'large-vehicle', 'ship'])
+    train_dataset = DOTADetection(DOTAroot, image_sets=train_sets,preproc=preproc(
+        img_dim, rgb_means, rgb_std, p), target_transform=DotaAnnTrans())
 else:
     print('Only VOC and COCO are supported now!')
     print('Now, DOTA is supported.')

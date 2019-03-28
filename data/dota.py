@@ -13,7 +13,7 @@ from PIL import Image
 #from DOTA_devkit import dota_utils as util
 from DOTA_devkit import DOTA
 # from .voc_eval import voc_eval # VOCdevkit
-# from config import DOTA_CLASSES
+from config import DOTA_CLASSES
 """
 VOC_CLASSES = ('__background__',  # always index 0
                'aeroplane', 'bicycle', 'bird', 'boat',
@@ -26,7 +26,7 @@ VOC_CLASSES = ('__background__',  # always index 0
 DOTA_CLASSES = ('__background__', 'plane', 'baseball-diamond', 'bridge', 'ground-track-field', 'small-vehicle', 'large-vehicle', 'ship', 'tennis-court',
                'basketball-court', 'storage-tank',  'soccer-ball-field', 'roundabout', 'harbor', 'swimming-pool', 'helicopter')
 """
-DOTA_CLASSES = ('__background__', 'plane')
+# DOTA_CLASSES = ('__background__', 'plane')
 class DotaAnnTrans:
     """Transforms a DOTA annotation into a Tensor of bbox coords and label index
     Initilized with a dictionary lookup of classnames to indexes
@@ -122,7 +122,7 @@ class DOTADetection(data.Dataset):
     """
 
     def __init__(self, rootPath, image_sets='train', preproc=None, target_transform=None,
-                 dataset_name='DOTA', parseMode='parse_dota_rec', catNms=[]):
+                 dataset_name='DOTA', parseMode='parse_dota_rec', catNms=list(DOTA_CLASSES)):
         self.rootPath = rootPath
         self.image_set = image_sets
         # 构造DOTA加载路径
@@ -136,6 +136,9 @@ class DOTADetection(data.Dataset):
         self.parseMode = parseMode
         # DOTA筛选类别
         self.catNms = catNms
+        print('loading classes :')
+        for item in range(1,len(catNms)):
+            print(catNms[item])
         # 加载DOTA(imgIDs, anns)
         self.dataset = DOTA.DOTA(self.path, parseMode=self.parseMode)
         self.imgIDs = self.dataset.getImgIds(self.catNms)
