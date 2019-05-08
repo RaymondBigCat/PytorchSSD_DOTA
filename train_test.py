@@ -6,7 +6,7 @@ import time
 
 import numpy as np
 import os
-os.environ["CUDA_VISIBLE_DEVICES"] = "0" #设置GPU0可见
+os.environ["CUDA_VISIBLE_DEVICES"] = "1" #设置GPU0可见
 import torch
 import torch.backends.cudnn as cudnn
 import torch.nn.init as init
@@ -52,7 +52,8 @@ parser.add_argument('--momentum', default=0.9, type=float, help='momentum')
 parser.add_argument('--resume_net', default=False, help='resume net for retraining')
 parser.add_argument('--resume_epoch', default=0,
                     type=int, help='resume iter for retraining')
-
+# resume的model文件路径
+parser.add_argument('--resume_time', default = '2019-04-16-11:34',help='choose the time for resuming')
 parser.add_argument('-max', '--max_epoch', default=300,
                     type=int, help='max epoch for retraining')
 parser.add_argument('--weight_decay', default=5e-4,
@@ -75,8 +76,16 @@ parser.add_argument('--send_images_to_visdom', type=str2bool, default=False,
                     help='Sample a random image from each 10th batch, send it to visdom after augmentations step')
 args = parser.parse_args()
 
-save_date = time.strftime('%Y-%m-%d %H:%M',time.localtime(time.time()))
-save_folder = os.path.join(args.save_folder, args.version + '_' + args.size,save_date)
+"""
+输入进行train的数据集
+"""  
+# add DOTA dataset
+if args.dataset == 'DOTA':
+    train_sets = 'subset_planes_500_gap200'
+    cfg = (VOC_300, VOC_512)[args.size == '512']
+    
+save_date = time.strftime('%Y-%m-%d-%H:%M',time.localtime(time.time()))
+save_folder = os.path.join(args.save_folder, args.version + '_' + train_sets +'_'+ args.size,save_date)
 if not os.path.exists(save_folder):
     os.makedirs(save_folder)
 test_save_dir = os.path.join(save_folder, 'ss_predict')
@@ -84,14 +93,6 @@ if not os.path.exists(test_save_dir):
     os.makedirs(test_save_dir)
 
 log_file_path = save_folder + '/train' + time.strftime('_%Y-%m-%d-%H-%M', time.localtime(time.time())) + '.log'
-
-"""
-输入进行train的数据集
-"""  
-# add DOTA dataset
-if args.dataset == 'DOTA':
-    train_sets = 'splittest'
-    cfg = (VOC_300, VOC_512)[args.size == '512']
 """
 选择网络
 """
@@ -118,7 +119,8 @@ else:
 rgb_std = (1, 1, 1)
 img_dim = (300, 512)[args.size == '512']
 if 'vgg' in args.version:
-    rgb_means = (104, 117, 123)
+    #rgb_means = (104, 117, 123)
+    rgb_means = (100.95,100.55,95.21)
 elif 'mobile' in args.version:
     rgb_means = (103.94, 116.78, 123.68)
 
@@ -154,10 +156,10 @@ print(net)
 """
 if not args.resume_net:
     # 加载预训练模型
-    base_weights = torch.load(args.basenet)
-    print('Loading base network...')
+    #base_weights = torch.load(args.basenet)
+    #print('Loading base network...')
     # 向网络输入预训练模型的参数
-    net.base.load_state_dict(base_weights)
+    #net.base.load_state_dict(base_weights)
 
 
     def xavier(param):
@@ -191,7 +193,8 @@ if not args.resume_net:
         net.up_reduce.apply(weights_init)
 else: #恢复训练
     # load resume network
-    resume_net_path = os.path.join(save_folder, args.version + '_' + args.dataset + '_epoches_' + \
+    resume_folder = os.path.join(args.save_folder, args.version + '_' + train_sets +'_'+ args.size,args.resume_time)
+    resume_net_path = os.path.join(resume_folder, args.version + '_' + args.dataset + '_epoches_' + \
                                    str(args.resume_epoch) + '.pth')
     print('Loading resume network', resume_net_path)
     state_dict = torch.load(resume_net_path)
@@ -257,7 +260,11 @@ def train():
 
     stepvalues_VOC = (150 * epoch_size, 200 * epoch_size, 250 * epoch_size)
     stepvalues_COCO = (90 * epoch_size, 120 * epoch_size, 140 * epoch_size)
-    stepvalues = (stepvalues_VOC, stepvalues_COCO)[args.dataset == 'COCO']
+    stepvalues_DOTA = (150 * epoch_size, 200 * epoch_size, 300 * epoch_size)
+    if args.dataset == 'DOTA':
+        stepvalues = stepvalues_DOTA
+    else:
+        stepvalues = (stepvalues_VOC, stepvalues_COCO)[args.dataset == 'COCO']
     print('Training', args.version, 'on', train_dataset.name)
     step_index = 0
 

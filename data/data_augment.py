@@ -20,7 +20,7 @@ from utils.box_utils import matrix_iou
 
 
 # import torch_transforms
-
+# 裁剪变换
 def _crop(image, boxes, labels):
     height, width, _ = image.shape
 
@@ -81,7 +81,7 @@ def _crop(image, boxes, labels):
 
             return image_t, boxes_t, labels_t
 
-
+# 失真变换
 def _distort(image):
     def _convert(image, alpha=1, beta=0):
         tmp = image.astype(float) * alpha + beta
@@ -111,7 +111,7 @@ def _distort(image):
 
     return image
 
-
+# 扩张变换（实际：缩小变换）
 def _expand(image, boxes, fill, p):
     if random.random() > p:
         return image, boxes
@@ -194,6 +194,7 @@ class preproc(object):
         targets_o = np.hstack((boxes_o, labels_o))
 
         image_t, boxes, labels = _crop(image, boxes, labels)
+        # 不禁用失真变换和缩小变换
         image_t = _distort(image_t)
         image_t, boxes = _expand(image_t, boxes, self.means, self.p)
         image_t, boxes = _mirror(image_t, boxes)

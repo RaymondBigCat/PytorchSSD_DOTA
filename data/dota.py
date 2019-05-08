@@ -85,7 +85,8 @@ class DotaAnnTrans:
                 labels[num].extend(list(ann['bndbox']))
                 labels[num].append(self.class_to_ind[ann['name']])
         # 通过np的vstack进行垂直方向的数组叠加
-        res = np.vstack((res, labels))  # [xmin, ymin, xmax, ymax, label_ind]
+        if labels != []: #关键。负样本的标注为0,0,0,0,0
+            res = np.vstack((res, labels))  # [xmin, ymin, xmax, ymax, label_ind]
         # img_id = target.find('filename').text[:-4]
         #
         return res  # [[xmin, ymin, xmax, ymax, label_ind], ... ] 
@@ -141,7 +142,7 @@ class DOTADetection(data.Dataset):
             print(catNms[item])
         # 加载DOTA(imgIDs, anns)
         self.dataset = DOTA.DOTA(self.path, parseMode=self.parseMode)
-        self.imgIDs = self.dataset.getImgIds(self.catNms)
+        self.imgIDs = self.dataset.getImgIds(catNms=self.catNms) #取所有图，无用标注图作为负样本
         # 将类别编码为数字
         # self.class_to_ind = dict(zip(DOTA_CLASSES,range(len(DOTA_CLASSES))))
         
@@ -150,7 +151,7 @@ class DOTADetection(data.Dataset):
         # print('loading image:%s'%img_id)
         # 调用DOTA devkit 的方法load imgs（背后是cv2的imread）
         img = self.dataset.loadImgs(img_id)[0]
-        target = self.dataset.loadAnns(imgId=img_id,catNms=self.catNms)
+        target = self.dataset.loadAnns(imgId=img_id,catNms=self.catNms) #标注只取有用的
         # target 即是 Label
         # 
         # img = cv2.imread(self._imgpath % img_id, cv2.IMREAD_COLOR)

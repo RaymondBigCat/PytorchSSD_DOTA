@@ -1,0 +1,112 @@
+nohup: ignoring input
+SSD(
+  (base): ModuleList(
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): ReLU(inplace)
+    (2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (3): ReLU(inplace)
+    (4): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), dilation=(1, 1), ceil_mode=False)
+    (5): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (6): ReLU(inplace)
+    (7): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (8): ReLU(inplace)
+    (9): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), dilation=(1, 1), ceil_mode=False)
+    (10): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (11): ReLU(inplace)
+    (12): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (13): ReLU(inplace)
+    (14): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (15): ReLU(inplace)
+    (16): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), dilation=(1, 1), ceil_mode=True)
+    (17): Conv2d(256, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (18): ReLU(inplace)
+    (19): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (20): ReLU(inplace)
+    (21): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (22): ReLU(inplace)
+    (23): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), dilation=(1, 1), ceil_mode=False)
+    (24): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (25): ReLU(inplace)
+    (26): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (27): ReLU(inplace)
+    (28): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (29): ReLU(inplace)
+    (30): MaxPool2d(kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), dilation=(1, 1), ceil_mode=False)
+    (31): Conv2d(512, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(6, 6), dilation=(6, 6))
+    (32): ReLU(inplace)
+    (33): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1))
+    (34): ReLU(inplace)
+  )
+  (extras): ModuleList(
+    (0): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1))
+    (1): Conv2d(256, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+    (2): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1))
+    (3): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+    (4): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1))
+    (5): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1))
+    (6): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1))
+    (7): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1))
+  )
+  (L2Norm): L2Norm(
+  )
+  (loc): ModuleList(
+    (0): Conv2d(512, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): Conv2d(1024, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (2): Conv2d(512, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (3): Conv2d(256, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): Conv2d(256, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): Conv2d(256, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  )
+  (conf): ModuleList(
+    (0): Conv2d(512, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): Conv2d(1024, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (2): Conv2d(512, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (3): Conv2d(256, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): Conv2d(256, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): Conv2d(256, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  )
+  (softmax): Softmax()
+)
+Loading base network...
+Initializing weights...
+Loading Dataset...
+loading classes :
+plane
+ DOTA dataset has been successfully loaded 
+加载图片ID完成：共有 5482 张图片符合筛选条件
+Training SSD_vgg on DOTA
+Epoch time: 0.0000 sec
+/home/raymond/anaconda3/lib/python3.6/site-packages/torch/autograd/_functions/tensor.py:447: UserWarning: mask is not broadcastable to self, but they have the same number of elements.  Falling back to deprecated pointwise behavior.
+  return tensor.masked_fill_(mask, value)
+Epoch:1 || epochiter: 0/171|| Totel iter 0 || L: 0.3426 C: 0.6992||Batch time: 9.9782 sec. ||LR: 0.00400000
+Traceback (most recent call last):
+  File "train_test.py", line 413, in <module>
+    train()
+  File "train_test.py", line 364, in train
+    loss_l, loss_c = criterion(out, priors, targets)
+  File "/home/raymond/anaconda3/lib/python3.6/site-packages/torch/nn/modules/module.py", line 357, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/raymond/project/PytorchSSD_DOTA/layers/modules/multibox_loss.py", line 93, in forward
+    loss_c = log_sum_exp(batch_conf) - batch_conf.gather(1, conf_t.view(-1,1))
+  File "/home/raymond/project/PytorchSSD_DOTA/utils/box_utils.py", line 274, in log_sum_exp
+    return torch.log(torch.sum(torch.exp(x-x_max), 1, keepdim=True)) + x_max
+RuntimeError: value cannot be converted to type float without overflow: inf
+Exception ignored in: <bound method DataLoaderIter.__del__ of <torch.utils.data.dataloader.DataLoaderIter object at 0x7fdcca3dfcf8>>
+Traceback (most recent call last):
+  File "/home/raymond/anaconda3/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 333, in __del__
+    self._shutdown_workers()
+  File "/home/raymond/anaconda3/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 319, in _shutdown_workers
+    self.data_queue.get()
+  File "/home/raymond/anaconda3/lib/python3.6/multiprocessing/queues.py", line 337, in get
+    return _ForkingPickler.loads(res)
+  File "/home/raymond/anaconda3/lib/python3.6/site-packages/torch/multiprocessing/reductions.py", line 70, in rebuild_storage_fd
+    fd = df.detach()
+  File "/home/raymond/anaconda3/lib/python3.6/multiprocessing/resource_sharer.py", line 57, in detach
+    with _resource_sharer.get_connection(self._id) as conn:
+  File "/home/raymond/anaconda3/lib/python3.6/multiprocessing/resource_sharer.py", line 87, in get_connection
+    c = Client(address, authkey=process.current_process().authkey)
+  File "/home/raymond/anaconda3/lib/python3.6/multiprocessing/connection.py", line 487, in Client
+    c = SocketClient(address)
+  File "/home/raymond/anaconda3/lib/python3.6/multiprocessing/connection.py", line 614, in SocketClient
+    s.connect(address)
+ConnectionRefusedError: [Errno 111] Connection refused
