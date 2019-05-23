@@ -1,0 +1,963 @@
+nohup: ignoring input
+RFBNet(
+  (base): ModuleList(
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): ReLU(inplace)
+    (2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (3): ReLU(inplace)
+    (4): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), dilation=(1, 1), ceil_mode=False)
+    (5): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (6): ReLU(inplace)
+    (7): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (8): ReLU(inplace)
+    (9): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), dilation=(1, 1), ceil_mode=False)
+    (10): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (11): ReLU(inplace)
+    (12): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (13): ReLU(inplace)
+    (14): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (15): ReLU(inplace)
+    (16): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), dilation=(1, 1), ceil_mode=True)
+    (17): Conv2d(256, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (18): ReLU(inplace)
+    (19): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (20): ReLU(inplace)
+    (21): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (22): ReLU(inplace)
+    (23): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), dilation=(1, 1), ceil_mode=False)
+    (24): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (25): ReLU(inplace)
+    (26): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (27): ReLU(inplace)
+    (28): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (29): ReLU(inplace)
+    (30): MaxPool2d(kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), dilation=(1, 1), ceil_mode=False)
+    (31): Conv2d(512, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(6, 6), dilation=(6, 6))
+    (32): ReLU(inplace)
+    (33): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1))
+    (34): ReLU(inplace)
+  )
+  (Norm): BasicRFB_a(
+    (branch0): Sequential(
+      (0): BasicConv(
+        (conv): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn): BatchNorm2d(128, eps=1e-05, momentum=0.01, affine=True)
+        (relu): ReLU(inplace)
+      )
+      (1): BasicConv(
+        (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn): BatchNorm2d(128, eps=1e-05, momentum=0.01, affine=True)
+      )
+    )
+    (branch1): Sequential(
+      (0): BasicConv(
+        (conv): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn): BatchNorm2d(128, eps=1e-05, momentum=0.01, affine=True)
+        (relu): ReLU(inplace)
+      )
+      (1): BasicConv(
+        (conv): Conv2d(128, 128, kernel_size=(3, 1), stride=(1, 1), padding=(1, 0), bias=False)
+        (bn): BatchNorm2d(128, eps=1e-05, momentum=0.01, affine=True)
+        (relu): ReLU(inplace)
+      )
+      (2): BasicConv(
+        (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(3, 3), dilation=(3, 3), bias=False)
+        (bn): BatchNorm2d(128, eps=1e-05, momentum=0.01, affine=True)
+      )
+    )
+    (branch2): Sequential(
+      (0): BasicConv(
+        (conv): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn): BatchNorm2d(128, eps=1e-05, momentum=0.01, affine=True)
+        (relu): ReLU(inplace)
+      )
+      (1): BasicConv(
+        (conv): Conv2d(128, 128, kernel_size=(1, 3), stride=(1, 1), padding=(0, 1), bias=False)
+        (bn): BatchNorm2d(128, eps=1e-05, momentum=0.01, affine=True)
+        (relu): ReLU(inplace)
+      )
+      (2): BasicConv(
+        (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(3, 3), dilation=(3, 3), bias=False)
+        (bn): BatchNorm2d(128, eps=1e-05, momentum=0.01, affine=True)
+      )
+    )
+    (branch3): Sequential(
+      (0): BasicConv(
+        (conv): Conv2d(512, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn): BatchNorm2d(64, eps=1e-05, momentum=0.01, affine=True)
+        (relu): ReLU(inplace)
+      )
+      (1): BasicConv(
+        (conv): Conv2d(64, 96, kernel_size=(1, 3), stride=(1, 1), padding=(0, 1), bias=False)
+        (bn): BatchNorm2d(96, eps=1e-05, momentum=0.01, affine=True)
+        (relu): ReLU(inplace)
+      )
+      (2): BasicConv(
+        (conv): Conv2d(96, 128, kernel_size=(3, 1), stride=(1, 1), padding=(1, 0), bias=False)
+        (bn): BatchNorm2d(128, eps=1e-05, momentum=0.01, affine=True)
+        (relu): ReLU(inplace)
+      )
+      (3): BasicConv(
+        (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(5, 5), dilation=(5, 5), bias=False)
+        (bn): BatchNorm2d(128, eps=1e-05, momentum=0.01, affine=True)
+      )
+    )
+    (ConvLinear): BasicConv(
+      (conv): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn): BatchNorm2d(512, eps=1e-05, momentum=0.01, affine=True)
+    )
+    (shortcut): BasicConv(
+      (conv): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn): BatchNorm2d(512, eps=1e-05, momentum=0.01, affine=True)
+    )
+    (relu): ReLU()
+  )
+  (extras): ModuleList(
+    (0): BasicRFB(
+      (branch0): Sequential(
+        (0): BasicConv(
+          (conv): Conv2d(1024, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(128, eps=1e-05, momentum=0.01, affine=True)
+          (relu): ReLU(inplace)
+        )
+        (1): BasicConv(
+          (conv): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn): BatchNorm2d(256, eps=1e-05, momentum=0.01, affine=True)
+          (relu): ReLU(inplace)
+        )
+        (2): BasicConv(
+          (conv): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(3, 3), dilation=(3, 3), bias=False)
+          (bn): BatchNorm2d(256, eps=1e-05, momentum=0.01, affine=True)
+        )
+      )
+      (branch1): Sequential(
+        (0): BasicConv(
+          (conv): Conv2d(1024, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(128, eps=1e-05, momentum=0.01, affine=True)
+          (relu): ReLU(inplace)
+        )
+        (1): BasicConv(
+          (conv): Conv2d(128, 192, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn): BatchNorm2d(192, eps=1e-05, momentum=0.01, affine=True)
+          (relu): ReLU(inplace)
+        )
+        (2): BasicConv(
+          (conv): Conv2d(192, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn): BatchNorm2d(256, eps=1e-05, momentum=0.01, affine=True)
+          (relu): ReLU(inplace)
+        )
+        (3): BasicConv(
+          (conv): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(5, 5), dilation=(5, 5), bias=False)
+          (bn): BatchNorm2d(256, eps=1e-05, momentum=0.01, affine=True)
+        )
+      )
+      (ConvLinear): BasicConv(
+        (conv): Conv2d(512, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn): BatchNorm2d(1024, eps=1e-05, momentum=0.01, affine=True)
+      )
+      (shortcut): BasicConv(
+        (conv): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn): BatchNorm2d(1024, eps=1e-05, momentum=0.01, affine=True)
+      )
+      (relu): ReLU()
+    )
+    (1): BasicRFB(
+      (branch0): Sequential(
+        (0): BasicConv(
+          (conv): Conv2d(1024, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(128, eps=1e-05, momentum=0.01, affine=True)
+          (relu): ReLU(inplace)
+        )
+        (1): BasicConv(
+          (conv): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+          (bn): BatchNorm2d(256, eps=1e-05, momentum=0.01, affine=True)
+          (relu): ReLU(inplace)
+        )
+        (2): BasicConv(
+          (conv): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(3, 3), dilation=(3, 3), bias=False)
+          (bn): BatchNorm2d(256, eps=1e-05, momentum=0.01, affine=True)
+        )
+      )
+      (branch1): Sequential(
+        (0): BasicConv(
+          (conv): Conv2d(1024, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(128, eps=1e-05, momentum=0.01, affine=True)
+          (relu): ReLU(inplace)
+        )
+        (1): BasicConv(
+          (conv): Conv2d(128, 192, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn): BatchNorm2d(192, eps=1e-05, momentum=0.01, affine=True)
+          (relu): ReLU(inplace)
+        )
+        (2): BasicConv(
+          (conv): Conv2d(192, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+          (bn): BatchNorm2d(256, eps=1e-05, momentum=0.01, affine=True)
+          (relu): ReLU(inplace)
+        )
+        (3): BasicConv(
+          (conv): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(5, 5), dilation=(5, 5), bias=False)
+          (bn): BatchNorm2d(256, eps=1e-05, momentum=0.01, affine=True)
+        )
+      )
+      (ConvLinear): BasicConv(
+        (conv): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn): BatchNorm2d(512, eps=1e-05, momentum=0.01, affine=True)
+      )
+      (shortcut): BasicConv(
+        (conv): Conv2d(1024, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (bn): BatchNorm2d(512, eps=1e-05, momentum=0.01, affine=True)
+      )
+      (relu): ReLU()
+    )
+    (2): BasicRFB(
+      (branch0): Sequential(
+        (0): BasicConv(
+          (conv): Conv2d(512, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(64, eps=1e-05, momentum=0.01, affine=True)
+          (relu): ReLU(inplace)
+        )
+        (1): BasicConv(
+          (conv): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+          (bn): BatchNorm2d(128, eps=1e-05, momentum=0.01, affine=True)
+          (relu): ReLU(inplace)
+        )
+        (2): BasicConv(
+          (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(3, 3), dilation=(3, 3), bias=False)
+          (bn): BatchNorm2d(128, eps=1e-05, momentum=0.01, affine=True)
+        )
+      )
+      (branch1): Sequential(
+        (0): BasicConv(
+          (conv): Conv2d(512, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(64, eps=1e-05, momentum=0.01, affine=True)
+          (relu): ReLU(inplace)
+        )
+        (1): BasicConv(
+          (conv): Conv2d(64, 96, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn): BatchNorm2d(96, eps=1e-05, momentum=0.01, affine=True)
+          (relu): ReLU(inplace)
+        )
+        (2): BasicConv(
+          (conv): Conv2d(96, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+          (bn): BatchNorm2d(128, eps=1e-05, momentum=0.01, affine=True)
+          (relu): ReLU(inplace)
+        )
+        (3): BasicConv(
+          (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(5, 5), dilation=(5, 5), bias=False)
+          (bn): BatchNorm2d(128, eps=1e-05, momentum=0.01, affine=True)
+        )
+      )
+      (ConvLinear): BasicConv(
+        (conv): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn): BatchNorm2d(256, eps=1e-05, momentum=0.01, affine=True)
+      )
+      (shortcut): BasicConv(
+        (conv): Conv2d(512, 256, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (bn): BatchNorm2d(256, eps=1e-05, momentum=0.01, affine=True)
+      )
+      (relu): ReLU()
+    )
+    (3): BasicRFB(
+      (branch0): Sequential(
+        (0): BasicConv(
+          (conv): Conv2d(256, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(32, eps=1e-05, momentum=0.01, affine=True)
+          (relu): ReLU(inplace)
+        )
+        (1): BasicConv(
+          (conv): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+          (bn): BatchNorm2d(64, eps=1e-05, momentum=0.01, affine=True)
+          (relu): ReLU(inplace)
+        )
+        (2): BasicConv(
+          (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(2, 2), dilation=(2, 2), bias=False)
+          (bn): BatchNorm2d(64, eps=1e-05, momentum=0.01, affine=True)
+        )
+      )
+      (branch1): Sequential(
+        (0): BasicConv(
+          (conv): Conv2d(256, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(32, eps=1e-05, momentum=0.01, affine=True)
+          (relu): ReLU(inplace)
+        )
+        (1): BasicConv(
+          (conv): Conv2d(32, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn): BatchNorm2d(48, eps=1e-05, momentum=0.01, affine=True)
+          (relu): ReLU(inplace)
+        )
+        (2): BasicConv(
+          (conv): Conv2d(48, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+          (bn): BatchNorm2d(64, eps=1e-05, momentum=0.01, affine=True)
+          (relu): ReLU(inplace)
+        )
+        (3): BasicConv(
+          (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(3, 3), dilation=(3, 3), bias=False)
+          (bn): BatchNorm2d(64, eps=1e-05, momentum=0.01, affine=True)
+        )
+      )
+      (ConvLinear): BasicConv(
+        (conv): Conv2d(128, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn): BatchNorm2d(256, eps=1e-05, momentum=0.01, affine=True)
+      )
+      (shortcut): BasicConv(
+        (conv): Conv2d(256, 256, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (bn): BatchNorm2d(256, eps=1e-05, momentum=0.01, affine=True)
+      )
+      (relu): ReLU()
+    )
+    (4): BasicRFB(
+      (branch0): Sequential(
+        (0): BasicConv(
+          (conv): Conv2d(256, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(32, eps=1e-05, momentum=0.01, affine=True)
+          (relu): ReLU(inplace)
+        )
+        (1): BasicConv(
+          (conv): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+          (bn): BatchNorm2d(64, eps=1e-05, momentum=0.01, affine=True)
+          (relu): ReLU(inplace)
+        )
+        (2): BasicConv(
+          (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(2, 2), dilation=(2, 2), bias=False)
+          (bn): BatchNorm2d(64, eps=1e-05, momentum=0.01, affine=True)
+        )
+      )
+      (branch1): Sequential(
+        (0): BasicConv(
+          (conv): Conv2d(256, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(32, eps=1e-05, momentum=0.01, affine=True)
+          (relu): ReLU(inplace)
+        )
+        (1): BasicConv(
+          (conv): Conv2d(32, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn): BatchNorm2d(48, eps=1e-05, momentum=0.01, affine=True)
+          (relu): ReLU(inplace)
+        )
+        (2): BasicConv(
+          (conv): Conv2d(48, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+          (bn): BatchNorm2d(64, eps=1e-05, momentum=0.01, affine=True)
+          (relu): ReLU(inplace)
+        )
+        (3): BasicConv(
+          (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(3, 3), dilation=(3, 3), bias=False)
+          (bn): BatchNorm2d(64, eps=1e-05, momentum=0.01, affine=True)
+        )
+      )
+      (ConvLinear): BasicConv(
+        (conv): Conv2d(128, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn): BatchNorm2d(256, eps=1e-05, momentum=0.01, affine=True)
+      )
+      (shortcut): BasicConv(
+        (conv): Conv2d(256, 256, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (bn): BatchNorm2d(256, eps=1e-05, momentum=0.01, affine=True)
+      )
+      (relu): ReLU()
+    )
+    (5): BasicConv(
+      (conv): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn): BatchNorm2d(128, eps=1e-05, momentum=0.01, affine=True)
+      (relu): ReLU(inplace)
+    )
+    (6): BasicConv(
+      (conv): Conv2d(128, 256, kernel_size=(4, 4), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn): BatchNorm2d(256, eps=1e-05, momentum=0.01, affine=True)
+      (relu): ReLU(inplace)
+    )
+  )
+  (loc): ModuleList(
+    (0): Conv2d(512, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): Conv2d(1024, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (2): Conv2d(512, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (3): Conv2d(256, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): Conv2d(256, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): Conv2d(256, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (6): Conv2d(256, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  )
+  (conf): ModuleList(
+    (0): Conv2d(512, 30, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): Conv2d(1024, 30, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (2): Conv2d(512, 30, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (3): Conv2d(256, 30, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): Conv2d(256, 30, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): Conv2d(256, 20, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (6): Conv2d(256, 20, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  )
+  (softmax): Softmax()
+)
+Loading base network...
+Initializing weights...
+Loading Dataset...
+ DOTA dataset has been successfully loaded 
+加载图片ID完成：共有 12709 张图片符合筛选条件
+Training RFB_vgg on DOTA
+Epoch time: 0.0000 sec
+/home/raymond/anaconda3/lib/python3.6/site-packages/torch/autograd/_functions/tensor.py:447: UserWarning: mask is not broadcastable to self, but they have the same number of elements.  Falling back to deprecated pointwise behavior.
+  return tensor.masked_fill_(mask, value)
+Epoch:1 || epochiter: 0/1588|| Totel iter 0 || L: 0.3977 C: 1.2610||Batch time: 7.8216 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 10/1588|| Totel iter 10 || L: 6.2992 C: 21.3713||Batch time: 0.4617 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 20/1588|| Totel iter 20 || L: 6.8907 C: 35.1994||Batch time: 0.4479 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 30/1588|| Totel iter 30 || L: 5.3931 C: 23.7414||Batch time: 0.4450 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 40/1588|| Totel iter 40 || L: 3.9125 C: 12.2015||Batch time: 0.4434 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 50/1588|| Totel iter 50 || L: 3.7083 C: 7.4008||Batch time: 0.4442 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 60/1588|| Totel iter 60 || L: 3.8449 C: 4.6925||Batch time: 0.4434 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 70/1588|| Totel iter 70 || L: 4.0907 C: 3.1378||Batch time: 0.4465 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 80/1588|| Totel iter 80 || L: 3.2295 C: 2.6173||Batch time: 0.4426 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 90/1588|| Totel iter 90 || L: 3.1809 C: 3.1388||Batch time: 0.4448 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 100/1588|| Totel iter 100 || L: 3.3277 C: 2.3654||Batch time: 0.4488 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 110/1588|| Totel iter 110 || L: 2.9162 C: 2.6194||Batch time: 0.4580 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 120/1588|| Totel iter 120 || L: 3.2768 C: 1.6056||Batch time: 0.4627 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 130/1588|| Totel iter 130 || L: 3.5014 C: 1.8285||Batch time: 0.4800 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 140/1588|| Totel iter 140 || L: 3.1911 C: 1.7201||Batch time: 0.4854 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 150/1588|| Totel iter 150 || L: 3.5764 C: 2.3516||Batch time: 0.4527 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 160/1588|| Totel iter 160 || L: 3.3771 C: 1.7808||Batch time: 0.4645 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 170/1588|| Totel iter 170 || L: 4.0599 C: 2.1484||Batch time: 0.4529 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 180/1588|| Totel iter 180 || L: 3.2981 C: 1.8191||Batch time: 0.4676 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 190/1588|| Totel iter 190 || L: 3.2288 C: 1.6136||Batch time: 0.4692 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 200/1588|| Totel iter 200 || L: 3.0591 C: 2.0066||Batch time: 0.4587 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 210/1588|| Totel iter 210 || L: 3.2445 C: 1.5330||Batch time: 0.4619 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 220/1588|| Totel iter 220 || L: 3.1877 C: 1.6774||Batch time: 0.4643 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 230/1588|| Totel iter 230 || L: 3.2015 C: 1.4000||Batch time: 0.4530 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 240/1588|| Totel iter 240 || L: 3.4322 C: 1.7760||Batch time: 0.4803 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 250/1588|| Totel iter 250 || L: 3.3849 C: 1.5880||Batch time: 0.4831 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 260/1588|| Totel iter 260 || L: 3.4696 C: 1.5475||Batch time: 0.5055 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 270/1588|| Totel iter 270 || L: 3.4975 C: 1.8422||Batch time: 0.4918 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 280/1588|| Totel iter 280 || L: 3.2438 C: 1.6609||Batch time: 0.5054 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 290/1588|| Totel iter 290 || L: 3.1242 C: 1.3624||Batch time: 0.4679 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 300/1588|| Totel iter 300 || L: 3.5963 C: 1.7854||Batch time: 0.4971 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 310/1588|| Totel iter 310 || L: 3.2791 C: 1.5218||Batch time: 0.4867 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 320/1588|| Totel iter 320 || L: 3.3517 C: 1.5676||Batch time: 0.4731 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 330/1588|| Totel iter 330 || L: 3.2059 C: 1.5791||Batch time: 0.4596 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 340/1588|| Totel iter 340 || L: 2.9389 C: 1.4967||Batch time: 0.4664 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 350/1588|| Totel iter 350 || L: 3.1579 C: 1.5377||Batch time: 0.4536 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 360/1588|| Totel iter 360 || L: 2.9531 C: 1.6024||Batch time: 0.4666 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 370/1588|| Totel iter 370 || L: 3.0769 C: 1.5491||Batch time: 0.4621 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 380/1588|| Totel iter 380 || L: 2.9282 C: 1.5407||Batch time: 0.4491 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 390/1588|| Totel iter 390 || L: 2.9917 C: 1.3953||Batch time: 0.4596 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 400/1588|| Totel iter 400 || L: 3.4570 C: 1.4156||Batch time: 0.4584 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 410/1588|| Totel iter 410 || L: 3.3596 C: 1.6968||Batch time: 0.4517 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 420/1588|| Totel iter 420 || L: 3.3413 C: 1.6557||Batch time: 0.4509 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 430/1588|| Totel iter 430 || L: 3.2842 C: 1.7878||Batch time: 0.4514 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 440/1588|| Totel iter 440 || L: 3.1845 C: 1.4989||Batch time: 0.4576 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 450/1588|| Totel iter 450 || L: 2.9386 C: 1.2743||Batch time: 0.4691 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 460/1588|| Totel iter 460 || L: 3.3149 C: 1.8044||Batch time: 0.4504 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 470/1588|| Totel iter 470 || L: 3.2417 C: 1.5455||Batch time: 0.4522 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 480/1588|| Totel iter 480 || L: 3.7290 C: 1.4415||Batch time: 0.4536 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 490/1588|| Totel iter 490 || L: 3.5746 C: 1.4047||Batch time: 0.4506 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 500/1588|| Totel iter 500 || L: 3.0131 C: 1.4294||Batch time: 0.4635 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 510/1588|| Totel iter 510 || L: 3.1146 C: 1.4278||Batch time: 0.4532 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 520/1588|| Totel iter 520 || L: 3.2748 C: 1.5825||Batch time: 0.4670 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 530/1588|| Totel iter 530 || L: 3.2429 C: 1.4216||Batch time: 0.4524 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 540/1588|| Totel iter 540 || L: 3.1845 C: 1.3076||Batch time: 0.4640 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 550/1588|| Totel iter 550 || L: 3.2092 C: 1.5079||Batch time: 0.4512 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 560/1588|| Totel iter 560 || L: 2.8906 C: 1.4046||Batch time: 0.4650 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 570/1588|| Totel iter 570 || L: 3.1420 C: 1.4268||Batch time: 0.4727 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 580/1588|| Totel iter 580 || L: 3.0518 C: 1.3669||Batch time: 0.4470 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 590/1588|| Totel iter 590 || L: 2.9478 C: 1.4553||Batch time: 0.4778 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 600/1588|| Totel iter 600 || L: 3.0459 C: 1.4030||Batch time: 0.4537 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 610/1588|| Totel iter 610 || L: 3.4031 C: 1.5273||Batch time: 0.4557 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 620/1588|| Totel iter 620 || L: 3.0192 C: 7.1309||Batch time: 0.4721 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 630/1588|| Totel iter 630 || L: 3.0616 C: 3.5936||Batch time: 0.4524 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 640/1588|| Totel iter 640 || L: 3.0068 C: 3.1067||Batch time: 0.4718 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 650/1588|| Totel iter 650 || L: 3.1257 C: 2.6815||Batch time: 0.4712 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 660/1588|| Totel iter 660 || L: 3.0971 C: 1.9814||Batch time: 0.4796 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 670/1588|| Totel iter 670 || L: 3.2327 C: 2.2420||Batch time: 0.4552 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 680/1588|| Totel iter 680 || L: 3.3721 C: 1.8594||Batch time: 0.4651 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 690/1588|| Totel iter 690 || L: 3.4579 C: 2.3632||Batch time: 0.4764 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 700/1588|| Totel iter 700 || L: 3.1730 C: 1.7397||Batch time: 0.4522 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 710/1588|| Totel iter 710 || L: 2.9702 C: 3.4307||Batch time: 0.4710 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 720/1588|| Totel iter 720 || L: 3.1155 C: 1.9937||Batch time: 0.4506 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 730/1588|| Totel iter 730 || L: 3.4526 C: 1.6376||Batch time: 0.4799 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 740/1588|| Totel iter 740 || L: 3.1179 C: 1.8455||Batch time: 0.4563 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 750/1588|| Totel iter 750 || L: 3.0606 C: 1.3964||Batch time: 0.4745 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 760/1588|| Totel iter 760 || L: 2.8755 C: 2.0468||Batch time: 0.4543 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 770/1588|| Totel iter 770 || L: 3.1236 C: 1.9268||Batch time: 0.4670 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 780/1588|| Totel iter 780 || L: 3.1192 C: 1.7232||Batch time: 0.4532 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 790/1588|| Totel iter 790 || L: 3.0676 C: 2.1343||Batch time: 0.4711 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 800/1588|| Totel iter 800 || L: 3.2084 C: 3.6708||Batch time: 0.4509 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 810/1588|| Totel iter 810 || L: 3.1835 C: 12.9310||Batch time: 0.4535 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 820/1588|| Totel iter 820 || L: 2.9467 C: 6.5462||Batch time: 0.4546 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 830/1588|| Totel iter 830 || L: 3.6227 C: 5.7211||Batch time: 0.4552 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 840/1588|| Totel iter 840 || L: 3.2664 C: 4.8802||Batch time: 0.4726 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 850/1588|| Totel iter 850 || L: 3.1567 C: 4.7975||Batch time: 0.4677 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 860/1588|| Totel iter 860 || L: 3.1536 C: 4.6810||Batch time: 0.4584 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 870/1588|| Totel iter 870 || L: 3.0209 C: 4.4366||Batch time: 0.4635 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 880/1588|| Totel iter 880 || L: 3.0227 C: 4.4319||Batch time: 0.4638 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 890/1588|| Totel iter 890 || L: 3.3067 C: 4.2467||Batch time: 0.4726 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 900/1588|| Totel iter 900 || L: 3.4385 C: 4.1824||Batch time: 0.4488 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 910/1588|| Totel iter 910 || L: 3.3168 C: 4.3374||Batch time: 0.4505 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 920/1588|| Totel iter 920 || L: 3.0337 C: 4.5072||Batch time: 0.4567 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 930/1588|| Totel iter 930 || L: 2.7742 C: 4.2825||Batch time: 0.4527 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 940/1588|| Totel iter 940 || L: 3.4541 C: 4.3058||Batch time: 0.4533 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 950/1588|| Totel iter 950 || L: 3.2582 C: 4.2825||Batch time: 0.4545 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 960/1588|| Totel iter 960 || L: 3.1408 C: 4.1443||Batch time: 0.4506 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 970/1588|| Totel iter 970 || L: 3.1288 C: 4.1160||Batch time: 0.4504 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 980/1588|| Totel iter 980 || L: 3.2867 C: 4.0895||Batch time: 0.4638 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 990/1588|| Totel iter 990 || L: 3.4321 C: 4.1262||Batch time: 0.4526 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1000/1588|| Totel iter 1000 || L: 3.3793 C: 4.2524||Batch time: 0.4648 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1010/1588|| Totel iter 1010 || L: 4.0974 C: 4.1109||Batch time: 0.4569 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1020/1588|| Totel iter 1020 || L: 3.3567 C: 4.0300||Batch time: 0.4650 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1030/1588|| Totel iter 1030 || L: 3.2116 C: 4.0027||Batch time: 0.4524 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1040/1588|| Totel iter 1040 || L: 2.9683 C: 4.0638||Batch time: 0.4609 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1050/1588|| Totel iter 1050 || L: 3.0850 C: 4.0211||Batch time: 0.4596 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1060/1588|| Totel iter 1060 || L: 3.3646 C: 4.0924||Batch time: 0.4513 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1070/1588|| Totel iter 1070 || L: 3.1549 C: 4.1043||Batch time: 0.4623 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1080/1588|| Totel iter 1080 || L: 3.1874 C: 3.9186||Batch time: 0.4556 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1090/1588|| Totel iter 1090 || L: 3.2941 C: 4.1146||Batch time: 0.4628 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1100/1588|| Totel iter 1100 || L: 3.3465 C: 3.8926||Batch time: 0.4513 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1110/1588|| Totel iter 1110 || L: 3.0516 C: 3.9637||Batch time: 0.4567 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1120/1588|| Totel iter 1120 || L: 2.8453 C: 4.0564||Batch time: 0.4483 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1130/1588|| Totel iter 1130 || L: 4.0300 C: 3.9249||Batch time: 0.4639 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1140/1588|| Totel iter 1140 || L: 3.1444 C: 4.0048||Batch time: 0.4750 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1150/1588|| Totel iter 1150 || L: 3.2579 C: 3.9557||Batch time: 0.4530 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1160/1588|| Totel iter 1160 || L: 3.3515 C: 4.1443||Batch time: 0.4646 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1170/1588|| Totel iter 1170 || L: 2.8150 C: 3.9875||Batch time: 0.4528 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1180/1588|| Totel iter 1180 || L: 3.1162 C: 3.9340||Batch time: 0.4659 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1190/1588|| Totel iter 1190 || L: 2.8151 C: 3.8740||Batch time: 0.5096 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1200/1588|| Totel iter 1200 || L: 2.7888 C: 3.9532||Batch time: 0.4769 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1210/1588|| Totel iter 1210 || L: 3.1181 C: 4.0186||Batch time: 0.4743 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1220/1588|| Totel iter 1220 || L: 2.9726 C: 3.8977||Batch time: 0.4660 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1230/1588|| Totel iter 1230 || L: 2.8532 C: 3.9366||Batch time: 0.4948 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1240/1588|| Totel iter 1240 || L: 3.2264 C: 4.0325||Batch time: 0.4863 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1250/1588|| Totel iter 1250 || L: 3.3008 C: 4.0333||Batch time: 0.5008 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1260/1588|| Totel iter 1260 || L: 2.9999 C: 3.8103||Batch time: 0.4686 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1270/1588|| Totel iter 1270 || L: 3.1628 C: 3.8611||Batch time: 0.4718 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1280/1588|| Totel iter 1280 || L: 3.1206 C: 3.9552||Batch time: 0.4569 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1290/1588|| Totel iter 1290 || L: 3.2604 C: 3.8826||Batch time: 0.4678 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1300/1588|| Totel iter 1300 || L: 3.1030 C: 3.8527||Batch time: 0.4732 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1310/1588|| Totel iter 1310 || L: 3.0306 C: 4.0596||Batch time: 0.4517 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1320/1588|| Totel iter 1320 || L: 3.0330 C: 3.9123||Batch time: 0.4561 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1330/1588|| Totel iter 1330 || L: 3.3130 C: 3.9180||Batch time: 0.4750 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1340/1588|| Totel iter 1340 || L: 2.8089 C: 3.8921||Batch time: 0.4654 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1350/1588|| Totel iter 1350 || L: 3.1318 C: 3.9020||Batch time: 0.4560 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1360/1588|| Totel iter 1360 || L: 3.4564 C: 3.9725||Batch time: 0.5211 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1370/1588|| Totel iter 1370 || L: 2.9210 C: 3.8795||Batch time: 0.4646 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1380/1588|| Totel iter 1380 || L: 3.5678 C: 4.0156||Batch time: 0.4741 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1390/1588|| Totel iter 1390 || L: 3.1824 C: 3.8999||Batch time: 0.4769 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1400/1588|| Totel iter 1400 || L: 2.9466 C: 3.8790||Batch time: 0.4821 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1410/1588|| Totel iter 1410 || L: 2.9945 C: 3.8404||Batch time: 0.4669 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1420/1588|| Totel iter 1420 || L: 3.1219 C: 3.8012||Batch time: 0.4627 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1430/1588|| Totel iter 1430 || L: 3.2902 C: 3.8792||Batch time: 0.4626 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1440/1588|| Totel iter 1440 || L: 3.1911 C: 3.8181||Batch time: 0.4642 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1450/1588|| Totel iter 1450 || L: 3.2729 C: 3.8593||Batch time: 0.4754 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1460/1588|| Totel iter 1460 || L: 3.1166 C: 3.8988||Batch time: 0.4722 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1470/1588|| Totel iter 1470 || L: 2.9780 C: 3.7273||Batch time: 0.4510 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1480/1588|| Totel iter 1480 || L: 3.1850 C: 3.8550||Batch time: 0.4554 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1490/1588|| Totel iter 1490 || L: 3.0237 C: 3.8174||Batch time: 0.4555 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1500/1588|| Totel iter 1500 || L: 2.9373 C: 3.8943||Batch time: 0.4663 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1510/1588|| Totel iter 1510 || L: 3.5893 C: 4.0641||Batch time: 0.4952 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1520/1588|| Totel iter 1520 || L: 3.6425 C: 3.8062||Batch time: 0.4857 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1530/1588|| Totel iter 1530 || L: 2.9239 C: 3.8182||Batch time: 0.4798 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1540/1588|| Totel iter 1540 || L: 2.9428 C: 3.9215||Batch time: 0.5084 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1550/1588|| Totel iter 1550 || L: 3.0836 C: 3.8020||Batch time: 0.4924 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1560/1588|| Totel iter 1560 || L: 2.9105 C: 3.8744||Batch time: 0.4700 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1570/1588|| Totel iter 1570 || L: 2.8022 C: 3.7940||Batch time: 0.5024 sec. ||LR: 0.00400000
+Epoch:1 || epochiter: 1580/1588|| Totel iter 1580 || L: 2.8139 C: 3.8574||Batch time: 0.4772 sec. ||LR: 0.00400000
+Epoch time: 744.9986 sec
+Epoch:2 || epochiter: 2/1588|| Totel iter 1590 || L: 3.3869 C: 3.8037||Batch time: 0.4738 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 12/1588|| Totel iter 1600 || L: 2.9040 C: 3.7960||Batch time: 0.4651 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 22/1588|| Totel iter 1610 || L: 3.2203 C: 3.8158||Batch time: 0.4556 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 32/1588|| Totel iter 1620 || L: 2.9246 C: 3.6948||Batch time: 0.4747 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 42/1588|| Totel iter 1630 || L: 2.8082 C: 3.7762||Batch time: 0.4777 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 52/1588|| Totel iter 1640 || L: 3.4782 C: 3.7975||Batch time: 0.4618 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 62/1588|| Totel iter 1650 || L: 3.0428 C: 3.8390||Batch time: 0.4837 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 72/1588|| Totel iter 1660 || L: 2.8839 C: 3.8232||Batch time: 0.4534 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 82/1588|| Totel iter 1670 || L: 3.0913 C: 3.8538||Batch time: 0.4532 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 92/1588|| Totel iter 1680 || L: 3.0437 C: 3.8439||Batch time: 0.4554 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 102/1588|| Totel iter 1690 || L: 3.0834 C: 3.7814||Batch time: 0.4581 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 112/1588|| Totel iter 1700 || L: 3.1118 C: 3.7424||Batch time: 0.4656 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 122/1588|| Totel iter 1710 || L: 3.5516 C: 3.7674||Batch time: 0.5090 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 132/1588|| Totel iter 1720 || L: 2.9846 C: 3.7784||Batch time: 0.4918 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 142/1588|| Totel iter 1730 || L: 3.1970 C: 3.7519||Batch time: 0.4789 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 152/1588|| Totel iter 1740 || L: 3.3140 C: 3.7039||Batch time: 0.4985 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 162/1588|| Totel iter 1750 || L: 3.5860 C: 3.7723||Batch time: 0.4836 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 172/1588|| Totel iter 1760 || L: 2.8345 C: 3.7539||Batch time: 0.4683 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 182/1588|| Totel iter 1770 || L: 3.2956 C: 3.8236||Batch time: 0.4807 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 192/1588|| Totel iter 1780 || L: 3.2840 C: 3.8056||Batch time: 0.4836 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 202/1588|| Totel iter 1790 || L: 3.1614 C: 3.7433||Batch time: 0.4833 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 212/1588|| Totel iter 1800 || L: 2.8893 C: 3.7805||Batch time: 0.4657 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 222/1588|| Totel iter 1810 || L: 3.3143 C: 3.6272||Batch time: 0.4634 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 232/1588|| Totel iter 1820 || L: 3.2626 C: 3.7776||Batch time: 0.4871 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 242/1588|| Totel iter 1830 || L: 3.0614 C: 3.7482||Batch time: 0.4503 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 252/1588|| Totel iter 1840 || L: 2.6351 C: 3.6984||Batch time: 0.4597 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 262/1588|| Totel iter 1850 || L: 3.8898 C: 3.7321||Batch time: 0.4585 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 272/1588|| Totel iter 1860 || L: 3.1608 C: 3.7819||Batch time: 0.4580 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 282/1588|| Totel iter 1870 || L: 3.1434 C: 3.7864||Batch time: 0.4543 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 292/1588|| Totel iter 1880 || L: 3.2966 C: 3.7246||Batch time: 0.4777 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 302/1588|| Totel iter 1890 || L: 3.5885 C: 3.8607||Batch time: 0.4543 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 312/1588|| Totel iter 1900 || L: 2.8869 C: 3.6710||Batch time: 0.4675 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 322/1588|| Totel iter 1910 || L: 3.0923 C: 3.7728||Batch time: 0.4530 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 332/1588|| Totel iter 1920 || L: 2.9057 C: 3.7457||Batch time: 0.4492 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 342/1588|| Totel iter 1930 || L: 3.3013 C: 3.7591||Batch time: 0.4519 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 352/1588|| Totel iter 1940 || L: 3.0473 C: 3.8212||Batch time: 0.4597 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 362/1588|| Totel iter 1950 || L: 2.9648 C: 3.7434||Batch time: 0.4687 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 372/1588|| Totel iter 1960 || L: 3.1922 C: 3.8177||Batch time: 0.4582 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 382/1588|| Totel iter 1970 || L: 3.1263 C: 3.7700||Batch time: 0.4714 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 392/1588|| Totel iter 1980 || L: 2.8277 C: 3.7256||Batch time: 0.4615 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 402/1588|| Totel iter 1990 || L: 3.1212 C: 3.7860||Batch time: 0.4756 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 412/1588|| Totel iter 2000 || L: 2.8374 C: 3.6889||Batch time: 0.4531 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 422/1588|| Totel iter 2010 || L: 2.6929 C: 3.7912||Batch time: 0.4710 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 432/1588|| Totel iter 2020 || L: 2.7168 C: 3.7486||Batch time: 0.4509 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 442/1588|| Totel iter 2030 || L: 2.8847 C: 3.7002||Batch time: 0.4611 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 452/1588|| Totel iter 2040 || L: 3.1385 C: 3.8941||Batch time: 0.4525 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 462/1588|| Totel iter 2050 || L: 3.0233 C: 3.7676||Batch time: 0.4641 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 472/1588|| Totel iter 2060 || L: 3.0395 C: 3.6833||Batch time: 0.4491 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 482/1588|| Totel iter 2070 || L: 3.1579 C: 3.7148||Batch time: 0.4627 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 492/1588|| Totel iter 2080 || L: 3.1695 C: 3.7286||Batch time: 0.4725 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 502/1588|| Totel iter 2090 || L: 2.9073 C: 3.8063||Batch time: 0.4487 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 512/1588|| Totel iter 2100 || L: 3.2593 C: 3.7735||Batch time: 0.4718 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 522/1588|| Totel iter 2110 || L: 2.9886 C: 3.7685||Batch time: 0.4645 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 532/1588|| Totel iter 2120 || L: 2.9243 C: 3.6937||Batch time: 0.4556 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 542/1588|| Totel iter 2130 || L: 3.2891 C: 3.6878||Batch time: 0.4660 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 552/1588|| Totel iter 2140 || L: 3.2376 C: 3.7207||Batch time: 0.4475 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 562/1588|| Totel iter 2150 || L: 3.1416 C: 3.6882||Batch time: 0.4496 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 572/1588|| Totel iter 2160 || L: 3.1434 C: 3.7097||Batch time: 0.4614 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 582/1588|| Totel iter 2170 || L: 3.0427 C: 3.6759||Batch time: 0.4728 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 592/1588|| Totel iter 2180 || L: 2.8638 C: 3.6664||Batch time: 0.4800 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 602/1588|| Totel iter 2190 || L: 3.1505 C: 3.7264||Batch time: 0.4563 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 612/1588|| Totel iter 2200 || L: 3.1454 C: 3.7201||Batch time: 0.4784 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 622/1588|| Totel iter 2210 || L: 3.4291 C: 3.7211||Batch time: 0.4548 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 632/1588|| Totel iter 2220 || L: 2.8526 C: 3.6265||Batch time: 0.4740 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 642/1588|| Totel iter 2230 || L: 3.1851 C: 3.7106||Batch time: 0.4611 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 652/1588|| Totel iter 2240 || L: 3.0317 C: 3.6555||Batch time: 0.4743 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 662/1588|| Totel iter 2250 || L: 2.8774 C: 3.7629||Batch time: 0.4572 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 672/1588|| Totel iter 2260 || L: 3.0725 C: 3.7460||Batch time: 0.4756 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 682/1588|| Totel iter 2270 || L: 2.7147 C: 3.6994||Batch time: 0.4557 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 692/1588|| Totel iter 2280 || L: 2.9041 C: 3.6232||Batch time: 0.4720 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 702/1588|| Totel iter 2290 || L: 2.9410 C: 3.7216||Batch time: 0.4739 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 712/1588|| Totel iter 2300 || L: 3.0695 C: 3.7196||Batch time: 0.4551 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 722/1588|| Totel iter 2310 || L: 2.8651 C: 3.6272||Batch time: 0.4564 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 732/1588|| Totel iter 2320 || L: 2.9082 C: 3.7596||Batch time: 0.4509 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 742/1588|| Totel iter 2330 || L: 3.1062 C: 3.7242||Batch time: 0.4761 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 752/1588|| Totel iter 2340 || L: 3.0856 C: 3.7462||Batch time: 0.4496 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 762/1588|| Totel iter 2350 || L: 2.9683 C: 3.7227||Batch time: 0.4647 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 772/1588|| Totel iter 2360 || L: 2.9824 C: 3.7781||Batch time: 0.4508 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 782/1588|| Totel iter 2370 || L: 2.7692 C: 3.7155||Batch time: 0.4611 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 792/1588|| Totel iter 2380 || L: 3.2704 C: 3.7604||Batch time: 0.4584 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 802/1588|| Totel iter 2390 || L: 2.9654 C: 3.7116||Batch time: 0.4746 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 812/1588|| Totel iter 2400 || L: 3.2327 C: 3.6399||Batch time: 0.4541 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 822/1588|| Totel iter 2410 || L: 3.4395 C: 3.6934||Batch time: 0.4580 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 832/1588|| Totel iter 2420 || L: 3.0072 C: 3.6507||Batch time: 0.4523 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 842/1588|| Totel iter 2430 || L: 3.1242 C: 3.6901||Batch time: 0.4680 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 852/1588|| Totel iter 2440 || L: 3.2321 C: 3.6171||Batch time: 0.4495 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 862/1588|| Totel iter 2450 || L: 3.2732 C: 3.7630||Batch time: 0.4569 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 872/1588|| Totel iter 2460 || L: 3.2769 C: 3.7630||Batch time: 0.4594 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 882/1588|| Totel iter 2470 || L: 2.9176 C: 3.7041||Batch time: 0.4581 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 892/1588|| Totel iter 2480 || L: 3.2285 C: 3.7570||Batch time: 0.4607 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 902/1588|| Totel iter 2490 || L: 3.0488 C: 3.7780||Batch time: 0.4531 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 912/1588|| Totel iter 2500 || L: 3.4407 C: 3.8018||Batch time: 0.4673 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 922/1588|| Totel iter 2510 || L: 2.9781 C: 3.7746||Batch time: 0.4507 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 932/1588|| Totel iter 2520 || L: 3.0072 C: 3.6474||Batch time: 0.4738 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 942/1588|| Totel iter 2530 || L: 2.9767 C: 3.7091||Batch time: 0.4542 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 952/1588|| Totel iter 2540 || L: 2.9095 C: 3.7221||Batch time: 0.4618 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 962/1588|| Totel iter 2550 || L: 3.2077 C: 3.6654||Batch time: 0.4545 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 972/1588|| Totel iter 2560 || L: 3.1564 C: 3.7653||Batch time: 0.4548 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 982/1588|| Totel iter 2570 || L: 3.1502 C: 3.7612||Batch time: 0.4693 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 992/1588|| Totel iter 2580 || L: 3.8917 C: 3.6249||Batch time: 0.4563 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1002/1588|| Totel iter 2590 || L: 3.4623 C: 3.6916||Batch time: 0.4706 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1012/1588|| Totel iter 2600 || L: 3.0066 C: 3.7212||Batch time: 0.4480 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1022/1588|| Totel iter 2610 || L: 3.1799 C: 3.6908||Batch time: 0.4549 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1032/1588|| Totel iter 2620 || L: 3.5074 C: 3.6520||Batch time: 0.4672 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1042/1588|| Totel iter 2630 || L: 2.9959 C: 3.6203||Batch time: 0.4550 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1052/1588|| Totel iter 2640 || L: 3.3398 C: 3.5796||Batch time: 0.4712 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1062/1588|| Totel iter 2650 || L: 3.2057 C: 3.7320||Batch time: 0.4512 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1072/1588|| Totel iter 2660 || L: 3.0656 C: 3.6746||Batch time: 0.4851 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1082/1588|| Totel iter 2670 || L: 3.0721 C: 3.6263||Batch time: 0.4523 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1092/1588|| Totel iter 2680 || L: 3.3299 C: 3.6758||Batch time: 0.4615 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1102/1588|| Totel iter 2690 || L: 3.1769 C: 3.6881||Batch time: 0.5096 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1112/1588|| Totel iter 2700 || L: 3.0624 C: 3.7036||Batch time: 0.5043 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1122/1588|| Totel iter 2710 || L: 3.5720 C: 3.7284||Batch time: 0.4748 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1132/1588|| Totel iter 2720 || L: 3.1168 C: 3.7399||Batch time: 0.4708 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1142/1588|| Totel iter 2730 || L: 2.8075 C: 3.7574||Batch time: 0.4663 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1152/1588|| Totel iter 2740 || L: 3.0763 C: 3.6802||Batch time: 0.4889 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1162/1588|| Totel iter 2750 || L: 3.2399 C: 3.6905||Batch time: 0.4591 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1172/1588|| Totel iter 2760 || L: 3.2997 C: 3.6884||Batch time: 0.4856 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1182/1588|| Totel iter 2770 || L: 2.9674 C: 3.5541||Batch time: 0.4700 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1192/1588|| Totel iter 2780 || L: 3.5406 C: 3.6805||Batch time: 0.4744 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1202/1588|| Totel iter 2790 || L: 3.2632 C: 3.6502||Batch time: 0.4559 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1212/1588|| Totel iter 2800 || L: 3.1340 C: 3.6477||Batch time: 0.4687 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1222/1588|| Totel iter 2810 || L: 3.6587 C: 3.5954||Batch time: 0.4617 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1232/1588|| Totel iter 2820 || L: 3.1158 C: 3.6834||Batch time: 0.4581 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1242/1588|| Totel iter 2830 || L: 3.1666 C: 3.6539||Batch time: 0.4517 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1252/1588|| Totel iter 2840 || L: 3.3512 C: 3.7249||Batch time: 0.4612 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1262/1588|| Totel iter 2850 || L: 2.9942 C: 3.6538||Batch time: 0.5061 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1272/1588|| Totel iter 2860 || L: 2.8799 C: 3.5199||Batch time: 0.4560 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1282/1588|| Totel iter 2870 || L: 2.8765 C: 3.6756||Batch time: 0.4878 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1292/1588|| Totel iter 2880 || L: 3.0342 C: 3.6986||Batch time: 0.4645 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1302/1588|| Totel iter 2890 || L: 3.9355 C: 3.6340||Batch time: 0.4752 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1312/1588|| Totel iter 2900 || L: 2.8215 C: 3.6333||Batch time: 0.4759 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1322/1588|| Totel iter 2910 || L: 2.9433 C: 3.6728||Batch time: 0.4841 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1332/1588|| Totel iter 2920 || L: 3.0569 C: 3.7209||Batch time: 0.4680 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1342/1588|| Totel iter 2930 || L: 2.8603 C: 3.5847||Batch time: 0.4627 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1352/1588|| Totel iter 2940 || L: 3.0015 C: 3.5531||Batch time: 0.4599 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1362/1588|| Totel iter 2950 || L: 3.4666 C: 3.7049||Batch time: 0.4529 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1372/1588|| Totel iter 2960 || L: 3.4249 C: 3.6647||Batch time: 0.4539 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1382/1588|| Totel iter 2970 || L: 3.0997 C: 3.6844||Batch time: 0.4588 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1392/1588|| Totel iter 2980 || L: 2.8175 C: 3.7034||Batch time: 0.4665 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1402/1588|| Totel iter 2990 || L: 3.3440 C: 3.7400||Batch time: 0.4853 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1412/1588|| Totel iter 3000 || L: 2.8437 C: 3.6495||Batch time: 0.4923 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1422/1588|| Totel iter 3010 || L: 2.8761 C: 3.7662||Batch time: 0.4863 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1432/1588|| Totel iter 3020 || L: 3.2564 C: 3.6165||Batch time: 0.4735 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1442/1588|| Totel iter 3030 || L: 3.0200 C: 3.6318||Batch time: 0.4643 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1452/1588|| Totel iter 3040 || L: 3.1632 C: 3.6442||Batch time: 0.4924 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1462/1588|| Totel iter 3050 || L: 3.2760 C: 3.6904||Batch time: 0.4831 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1472/1588|| Totel iter 3060 || L: 2.7450 C: 3.7028||Batch time: 0.4711 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1482/1588|| Totel iter 3070 || L: 2.8334 C: 3.6285||Batch time: 0.4567 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1492/1588|| Totel iter 3080 || L: 3.3014 C: 3.6167||Batch time: 0.4577 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1502/1588|| Totel iter 3090 || L: 3.4044 C: 3.6834||Batch time: 0.4623 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1512/1588|| Totel iter 3100 || L: 3.0305 C: 3.5919||Batch time: 0.4520 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1522/1588|| Totel iter 3110 || L: 3.4507 C: 3.6433||Batch time: 0.4565 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1532/1588|| Totel iter 3120 || L: 3.0587 C: 3.6724||Batch time: 0.4492 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1542/1588|| Totel iter 3130 || L: 3.1577 C: 3.6851||Batch time: 0.4580 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1552/1588|| Totel iter 3140 || L: 3.6098 C: 3.6056||Batch time: 0.4477 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1562/1588|| Totel iter 3150 || L: 2.9821 C: 3.7588||Batch time: 0.4625 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1572/1588|| Totel iter 3160 || L: 3.2432 C: 3.6274||Batch time: 0.4604 sec. ||LR: 0.00400000
+Epoch:2 || epochiter: 1582/1588|| Totel iter 3170 || L: 2.6807 C: 3.6091||Batch time: 0.4640 sec. ||LR: 0.00400000
+Epoch time: 741.1957 sec
+Epoch:3 || epochiter: 4/1588|| Totel iter 3180 || L: 2.8796 C: 3.6680||Batch time: 0.4670 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 14/1588|| Totel iter 3190 || L: 3.0208 C: 3.6835||Batch time: 0.4507 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 24/1588|| Totel iter 3200 || L: 3.1274 C: 3.6531||Batch time: 0.4568 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 34/1588|| Totel iter 3210 || L: 2.8610 C: 3.6590||Batch time: 0.4750 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 44/1588|| Totel iter 3220 || L: 3.5901 C: 3.6127||Batch time: 0.4553 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 54/1588|| Totel iter 3230 || L: 3.1511 C: 3.6510||Batch time: 0.4506 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 64/1588|| Totel iter 3240 || L: 3.2841 C: 3.5622||Batch time: 0.4581 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 74/1588|| Totel iter 3250 || L: 2.8634 C: 3.6826||Batch time: 0.4580 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 84/1588|| Totel iter 3260 || L: 3.3452 C: 3.6575||Batch time: 0.4616 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 94/1588|| Totel iter 3270 || L: 2.9788 C: 3.6621||Batch time: 0.4581 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 104/1588|| Totel iter 3280 || L: 3.6721 C: 3.6874||Batch time: 0.4724 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 114/1588|| Totel iter 3290 || L: 2.9525 C: 3.5557||Batch time: 0.4558 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 124/1588|| Totel iter 3300 || L: 2.7440 C: 3.6695||Batch time: 0.4783 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 134/1588|| Totel iter 3310 || L: 2.8626 C: 3.6409||Batch time: 0.4494 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 144/1588|| Totel iter 3320 || L: 2.9164 C: 3.6129||Batch time: 0.4691 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 154/1588|| Totel iter 3330 || L: 3.8585 C: 3.5887||Batch time: 0.4946 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 164/1588|| Totel iter 3340 || L: 2.7633 C: 3.6237||Batch time: 0.4767 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 174/1588|| Totel iter 3350 || L: 3.1665 C: 3.6718||Batch time: 0.4536 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 184/1588|| Totel iter 3360 || L: 2.9237 C: 3.6549||Batch time: 0.4760 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 194/1588|| Totel iter 3370 || L: 2.9405 C: 3.5556||Batch time: 0.4853 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 204/1588|| Totel iter 3380 || L: 3.3395 C: 3.6245||Batch time: 0.4820 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 214/1588|| Totel iter 3390 || L: 3.2802 C: 3.5781||Batch time: 0.4864 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 224/1588|| Totel iter 3400 || L: 2.9086 C: 3.6012||Batch time: 0.4898 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 234/1588|| Totel iter 3410 || L: 2.8155 C: 3.5885||Batch time: 0.4831 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 244/1588|| Totel iter 3420 || L: 2.5099 C: 3.5134||Batch time: 0.4764 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 254/1588|| Totel iter 3430 || L: 3.0907 C: 3.6360||Batch time: 0.4655 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 264/1588|| Totel iter 3440 || L: 3.0365 C: 3.5898||Batch time: 0.4698 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 274/1588|| Totel iter 3450 || L: 3.0036 C: 3.6974||Batch time: 0.4542 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 284/1588|| Totel iter 3460 || L: 2.9206 C: 3.5245||Batch time: 0.4548 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 294/1588|| Totel iter 3470 || L: 3.5781 C: 3.7492||Batch time: 0.4552 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 304/1588|| Totel iter 3480 || L: 2.9684 C: 3.6479||Batch time: 0.4533 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 314/1588|| Totel iter 3490 || L: 2.9575 C: 3.6457||Batch time: 0.4724 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 324/1588|| Totel iter 3500 || L: 3.3931 C: 3.5242||Batch time: 0.4537 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 334/1588|| Totel iter 3510 || L: 2.9665 C: 3.8338||Batch time: 0.4664 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 344/1588|| Totel iter 3520 || L: 3.2675 C: 3.6243||Batch time: 0.4504 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 354/1588|| Totel iter 3530 || L: 3.2837 C: 3.6040||Batch time: 0.4515 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 364/1588|| Totel iter 3540 || L: 3.0926 C: 3.7208||Batch time: 0.4503 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 374/1588|| Totel iter 3550 || L: 3.2479 C: 3.6575||Batch time: 0.4546 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 384/1588|| Totel iter 3560 || L: 3.2016 C: 3.6917||Batch time: 0.4532 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 394/1588|| Totel iter 3570 || L: 2.9547 C: 3.6057||Batch time: 0.4557 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 404/1588|| Totel iter 3580 || L: 2.6927 C: 3.6551||Batch time: 0.4521 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 414/1588|| Totel iter 3590 || L: 2.6135 C: 3.6204||Batch time: 0.4761 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 424/1588|| Totel iter 3600 || L: 2.9189 C: 3.5938||Batch time: 0.4536 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 434/1588|| Totel iter 3610 || L: 2.8957 C: 3.6192||Batch time: 0.4550 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 444/1588|| Totel iter 3620 || L: 2.8359 C: 3.6552||Batch time: 0.4596 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 454/1588|| Totel iter 3630 || L: 3.3655 C: 3.6645||Batch time: 0.4558 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 464/1588|| Totel iter 3640 || L: 2.9211 C: 3.5791||Batch time: 0.4651 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 474/1588|| Totel iter 3650 || L: 3.0259 C: 3.6342||Batch time: 0.4803 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 484/1588|| Totel iter 3660 || L: 3.6434 C: 3.5769||Batch time: 0.4837 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 494/1588|| Totel iter 3670 || L: 3.4210 C: 3.5254||Batch time: 0.5050 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 504/1588|| Totel iter 3680 || L: 3.0066 C: 3.5679||Batch time: 0.4785 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 514/1588|| Totel iter 3690 || L: 2.8909 C: 3.6414||Batch time: 0.4714 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 524/1588|| Totel iter 3700 || L: 3.2254 C: 3.6498||Batch time: 0.4739 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 534/1588|| Totel iter 3710 || L: 3.3678 C: 3.6903||Batch time: 0.4676 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 544/1588|| Totel iter 3720 || L: 3.3889 C: 3.5621||Batch time: 0.4668 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 554/1588|| Totel iter 3730 || L: 2.7828 C: 3.5865||Batch time: 0.4762 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 564/1588|| Totel iter 3740 || L: 3.2125 C: 3.6002||Batch time: 0.4964 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 574/1588|| Totel iter 3750 || L: 3.2946 C: 3.6591||Batch time: 0.4571 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 584/1588|| Totel iter 3760 || L: 3.3897 C: 3.5338||Batch time: 0.4536 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 594/1588|| Totel iter 3770 || L: 2.8500 C: 3.5980||Batch time: 0.4540 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 604/1588|| Totel iter 3780 || L: 2.7910 C: 3.4828||Batch time: 0.4564 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 614/1588|| Totel iter 3790 || L: 2.8767 C: 3.6414||Batch time: 0.4725 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 624/1588|| Totel iter 3800 || L: 3.8060 C: 3.5739||Batch time: 0.4557 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 634/1588|| Totel iter 3810 || L: 3.1631 C: 3.6164||Batch time: 0.4517 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 644/1588|| Totel iter 3820 || L: 2.8081 C: 3.6321||Batch time: 0.4542 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 654/1588|| Totel iter 3830 || L: 2.9552 C: 3.5439||Batch time: 0.4553 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 664/1588|| Totel iter 3840 || L: 3.2357 C: 3.6506||Batch time: 0.4549 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 674/1588|| Totel iter 3850 || L: 3.0907 C: 3.6228||Batch time: 0.4507 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 684/1588|| Totel iter 3860 || L: 2.9318 C: 3.6511||Batch time: 0.4560 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 694/1588|| Totel iter 3870 || L: 2.8883 C: 3.4835||Batch time: 0.4550 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 704/1588|| Totel iter 3880 || L: 2.7635 C: 3.7093||Batch time: 0.4676 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 714/1588|| Totel iter 3890 || L: 2.8017 C: 3.6730||Batch time: 0.4582 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 724/1588|| Totel iter 3900 || L: 3.6311 C: 3.5485||Batch time: 0.4651 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 734/1588|| Totel iter 3910 || L: 3.5290 C: 3.5968||Batch time: 0.4554 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 744/1588|| Totel iter 3920 || L: 2.9307 C: 3.6094||Batch time: 0.4586 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 754/1588|| Totel iter 3930 || L: 3.4658 C: 3.5705||Batch time: 0.4632 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 764/1588|| Totel iter 3940 || L: 2.5960 C: 3.6319||Batch time: 0.4814 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 774/1588|| Totel iter 3950 || L: 3.5431 C: 3.5388||Batch time: 0.4699 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 784/1588|| Totel iter 3960 || L: 3.0175 C: 3.6757||Batch time: 0.4980 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 794/1588|| Totel iter 3970 || L: 3.0511 C: 3.5273||Batch time: 0.4896 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 804/1588|| Totel iter 3980 || L: 3.4027 C: 3.5948||Batch time: 0.5011 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 814/1588|| Totel iter 3990 || L: 2.7609 C: 3.6482||Batch time: 0.4554 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 824/1588|| Totel iter 4000 || L: 2.9143 C: 3.6139||Batch time: 0.4861 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 834/1588|| Totel iter 4010 || L: 3.0615 C: 3.7252||Batch time: 0.4642 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 844/1588|| Totel iter 4020 || L: 2.9218 C: 3.6499||Batch time: 0.4735 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 854/1588|| Totel iter 4030 || L: 3.2049 C: 3.6144||Batch time: 0.4705 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 864/1588|| Totel iter 4040 || L: 3.1013 C: 3.5739||Batch time: 0.4726 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 874/1588|| Totel iter 4050 || L: 3.2095 C: 3.5430||Batch time: 0.4677 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 884/1588|| Totel iter 4060 || L: 3.1232 C: 3.6160||Batch time: 0.4593 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 894/1588|| Totel iter 4070 || L: 2.8845 C: 3.5695||Batch time: 0.4555 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 904/1588|| Totel iter 4080 || L: 3.0980 C: 3.5601||Batch time: 0.4696 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 914/1588|| Totel iter 4090 || L: 3.4234 C: 3.5166||Batch time: 0.4565 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 924/1588|| Totel iter 4100 || L: 2.9194 C: 3.6286||Batch time: 0.4606 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 934/1588|| Totel iter 4110 || L: 2.8930 C: 3.6549||Batch time: 0.4505 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 944/1588|| Totel iter 4120 || L: 3.2560 C: 3.6275||Batch time: 0.4657 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 954/1588|| Totel iter 4130 || L: 2.8576 C: 3.5641||Batch time: 0.4574 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 964/1588|| Totel iter 4140 || L: 3.2889 C: 3.5961||Batch time: 0.4514 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 974/1588|| Totel iter 4150 || L: 3.1035 C: 3.5741||Batch time: 0.4641 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 984/1588|| Totel iter 4160 || L: 3.4475 C: 3.5977||Batch time: 0.4599 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 994/1588|| Totel iter 4170 || L: 3.1313 C: 3.6359||Batch time: 0.4702 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1004/1588|| Totel iter 4180 || L: 3.0390 C: 3.5980||Batch time: 0.4521 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1014/1588|| Totel iter 4190 || L: 2.9928 C: 3.6616||Batch time: 0.4828 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1024/1588|| Totel iter 4200 || L: 3.3996 C: 3.6510||Batch time: 0.4888 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1034/1588|| Totel iter 4210 || L: 3.2021 C: 3.5575||Batch time: 0.4924 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1044/1588|| Totel iter 4220 || L: 3.4686 C: 3.6703||Batch time: 0.4651 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1054/1588|| Totel iter 4230 || L: 3.1396 C: 3.6621||Batch time: 0.5046 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1064/1588|| Totel iter 4240 || L: 2.7874 C: 3.5906||Batch time: 0.4773 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1074/1588|| Totel iter 4250 || L: 2.8910 C: 3.5991||Batch time: 0.4658 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1084/1588|| Totel iter 4260 || L: 2.8544 C: 3.6709||Batch time: 0.4841 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1094/1588|| Totel iter 4270 || L: 3.0189 C: 3.5674||Batch time: 0.4609 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1104/1588|| Totel iter 4280 || L: 2.8303 C: 3.4888||Batch time: 0.4708 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1114/1588|| Totel iter 4290 || L: 3.0114 C: 3.5622||Batch time: 0.4581 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1124/1588|| Totel iter 4300 || L: 2.8841 C: 3.5422||Batch time: 0.4685 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1134/1588|| Totel iter 4310 || L: 3.4947 C: 3.5361||Batch time: 0.4821 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1144/1588|| Totel iter 4320 || L: 3.0522 C: 3.5570||Batch time: 0.4559 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1154/1588|| Totel iter 4330 || L: 3.3628 C: 3.6391||Batch time: 0.4755 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1164/1588|| Totel iter 4340 || L: 3.3778 C: 3.5587||Batch time: 0.4558 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1174/1588|| Totel iter 4350 || L: 3.3305 C: 3.5830||Batch time: 0.4694 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1184/1588|| Totel iter 4360 || L: 2.9710 C: 3.5539||Batch time: 0.4589 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1194/1588|| Totel iter 4370 || L: 2.9280 C: 3.5707||Batch time: 0.5287 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1204/1588|| Totel iter 4380 || L: 2.7941 C: 3.6423||Batch time: 0.5064 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1214/1588|| Totel iter 4390 || L: 2.9084 C: 3.5580||Batch time: 0.5061 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1224/1588|| Totel iter 4400 || L: 3.4708 C: 3.5462||Batch time: 0.5047 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1234/1588|| Totel iter 4410 || L: 3.3236 C: 3.6330||Batch time: 0.4811 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1244/1588|| Totel iter 4420 || L: 3.1663 C: 3.6599||Batch time: 0.5314 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1254/1588|| Totel iter 4430 || L: 2.8425 C: 3.5714||Batch time: 0.4904 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1264/1588|| Totel iter 4440 || L: 3.8496 C: 3.5909||Batch time: 0.5138 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1274/1588|| Totel iter 4450 || L: 2.7463 C: 3.6885||Batch time: 0.4927 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1284/1588|| Totel iter 4460 || L: 3.5934 C: 3.7053||Batch time: 0.5044 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1294/1588|| Totel iter 4470 || L: 2.8282 C: 3.6334||Batch time: 0.4635 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1304/1588|| Totel iter 4480 || L: 2.9738 C: 3.6469||Batch time: 0.4794 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1314/1588|| Totel iter 4490 || L: 3.1006 C: 3.6373||Batch time: 0.4544 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1324/1588|| Totel iter 4500 || L: 3.7789 C: 3.6502||Batch time: 0.4807 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1334/1588|| Totel iter 4510 || L: 2.8943 C: 3.5794||Batch time: 0.4629 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1344/1588|| Totel iter 4520 || L: 3.3171 C: 3.6409||Batch time: 0.4757 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1354/1588|| Totel iter 4530 || L: 3.5198 C: 3.5663||Batch time: 0.4734 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1364/1588|| Totel iter 4540 || L: 3.5602 C: 3.6126||Batch time: 0.5514 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1374/1588|| Totel iter 4550 || L: 3.2114 C: 3.6972||Batch time: 0.4821 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1384/1588|| Totel iter 4560 || L: 2.8096 C: 3.6049||Batch time: 0.4914 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1394/1588|| Totel iter 4570 || L: 3.3010 C: 3.6277||Batch time: 0.4615 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1404/1588|| Totel iter 4580 || L: 2.9459 C: 3.7007||Batch time: 0.4710 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1414/1588|| Totel iter 4590 || L: 2.7390 C: 3.6403||Batch time: 0.4559 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1424/1588|| Totel iter 4600 || L: 3.2243 C: 3.6482||Batch time: 0.4909 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1434/1588|| Totel iter 4610 || L: 2.9671 C: 3.6157||Batch time: 0.4562 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1444/1588|| Totel iter 4620 || L: 2.9091 C: 3.6014||Batch time: 0.4770 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1454/1588|| Totel iter 4630 || L: 2.8600 C: 3.5589||Batch time: 0.4714 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1464/1588|| Totel iter 4640 || L: 3.0841 C: 3.6990||Batch time: 0.4566 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1474/1588|| Totel iter 4650 || L: 3.1908 C: 3.7081||Batch time: 0.4795 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1484/1588|| Totel iter 4660 || L: 3.2682 C: 3.6820||Batch time: 0.4619 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1494/1588|| Totel iter 4670 || L: 3.3048 C: 3.5830||Batch time: 0.4564 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1504/1588|| Totel iter 4680 || L: 2.8696 C: 3.7434||Batch time: 0.4686 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1514/1588|| Totel iter 4690 || L: 2.8917 C: 3.5722||Batch time: 0.4584 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1524/1588|| Totel iter 4700 || L: 3.3168 C: 3.5995||Batch time: 0.4648 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1534/1588|| Totel iter 4710 || L: 3.2301 C: 3.7323||Batch time: 0.4607 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1544/1588|| Totel iter 4720 || L: 3.2230 C: 3.6439||Batch time: 0.4746 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1554/1588|| Totel iter 4730 || L: 2.8281 C: 3.7067||Batch time: 0.4558 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1564/1588|| Totel iter 4740 || L: 3.5002 C: 3.5795||Batch time: 0.4615 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1574/1588|| Totel iter 4750 || L: 2.9720 C: 3.6818||Batch time: 0.4661 sec. ||LR: 0.00400000
+Epoch:3 || epochiter: 1584/1588|| Totel iter 4760 || L: 3.4682 C: 3.5987||Batch time: 0.4604 sec. ||LR: 0.00400000
+Epoch time: 747.7166 sec
+Epoch:4 || epochiter: 6/1588|| Totel iter 4770 || L: 2.9380 C: 3.6608||Batch time: 0.4532 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 16/1588|| Totel iter 4780 || L: 2.9402 C: 3.6206||Batch time: 0.4702 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 26/1588|| Totel iter 4790 || L: 3.0247 C: 3.5313||Batch time: 0.4983 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 36/1588|| Totel iter 4800 || L: 2.9976 C: 3.7256||Batch time: 0.5057 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 46/1588|| Totel iter 4810 || L: 3.2538 C: 3.5874||Batch time: 0.4893 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 56/1588|| Totel iter 4820 || L: 3.0055 C: 3.5510||Batch time: 0.4690 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 66/1588|| Totel iter 4830 || L: 3.0082 C: 3.6022||Batch time: 0.4619 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 76/1588|| Totel iter 4840 || L: 2.8648 C: 3.5938||Batch time: 0.4733 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 86/1588|| Totel iter 4850 || L: 3.3722 C: 3.5118||Batch time: 0.5033 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 96/1588|| Totel iter 4860 || L: 2.7237 C: 3.6405||Batch time: 0.4582 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 106/1588|| Totel iter 4870 || L: 3.1267 C: 3.5352||Batch time: 0.4942 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 116/1588|| Totel iter 4880 || L: 3.1763 C: 3.5611||Batch time: 0.4907 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 126/1588|| Totel iter 4890 || L: 3.2756 C: 3.5593||Batch time: 0.4680 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 136/1588|| Totel iter 4900 || L: 2.9623 C: 3.5540||Batch time: 0.4971 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 146/1588|| Totel iter 4910 || L: 3.1039 C: 3.6727||Batch time: 0.4723 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 156/1588|| Totel iter 4920 || L: 3.0039 C: 3.5500||Batch time: 0.4821 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 166/1588|| Totel iter 4930 || L: 3.1459 C: 3.6409||Batch time: 0.4689 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 176/1588|| Totel iter 4940 || L: 2.6368 C: 3.5463||Batch time: 0.4893 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 186/1588|| Totel iter 4950 || L: 2.9988 C: 3.5436||Batch time: 0.4656 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 196/1588|| Totel iter 4960 || L: 3.5530 C: 3.6925||Batch time: 0.4657 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 206/1588|| Totel iter 4970 || L: 2.8904 C: 3.6944||Batch time: 0.4530 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 216/1588|| Totel iter 4980 || L: 3.5377 C: 3.6170||Batch time: 0.4973 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 226/1588|| Totel iter 4990 || L: 3.0142 C: 3.6588||Batch time: 0.4522 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 236/1588|| Totel iter 5000 || L: 2.8525 C: 3.6032||Batch time: 0.4573 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 246/1588|| Totel iter 5010 || L: 3.2919 C: 3.6885||Batch time: 0.4703 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 256/1588|| Totel iter 5020 || L: 3.0806 C: 3.6637||Batch time: 0.4554 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 266/1588|| Totel iter 5030 || L: 3.0232 C: 3.6089||Batch time: 0.4647 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 276/1588|| Totel iter 5040 || L: 2.8415 C: 3.5997||Batch time: 0.4775 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 286/1588|| Totel iter 5050 || L: 3.0750 C: 3.6521||Batch time: 0.4801 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 296/1588|| Totel iter 5060 || L: 3.7786 C: 3.6658||Batch time: 0.4528 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 306/1588|| Totel iter 5070 || L: 2.8297 C: 3.6056||Batch time: 0.4606 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 316/1588|| Totel iter 5080 || L: 2.8788 C: 3.6007||Batch time: 0.4555 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 326/1588|| Totel iter 5090 || L: 2.9702 C: 3.6692||Batch time: 0.4699 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 336/1588|| Totel iter 5100 || L: 3.1514 C: 3.5533||Batch time: 0.4524 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 346/1588|| Totel iter 5110 || L: 3.8771 C: 3.5679||Batch time: 0.4701 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 356/1588|| Totel iter 5120 || L: 2.9454 C: 3.6203||Batch time: 0.5288 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 366/1588|| Totel iter 5130 || L: 3.1026 C: 3.6617||Batch time: 0.4634 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 376/1588|| Totel iter 5140 || L: 3.7544 C: 3.5268||Batch time: 0.4830 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 386/1588|| Totel iter 5150 || L: 2.9275 C: 3.6848||Batch time: 0.4857 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 396/1588|| Totel iter 5160 || L: 3.3273 C: 3.5766||Batch time: 0.5023 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 406/1588|| Totel iter 5170 || L: 2.9324 C: 3.5470||Batch time: 0.5146 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 416/1588|| Totel iter 5180 || L: 3.3534 C: 3.5728||Batch time: 0.4861 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 426/1588|| Totel iter 5190 || L: 3.1445 C: 3.6024||Batch time: 0.4714 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 436/1588|| Totel iter 5200 || L: 2.7725 C: 3.5818||Batch time: 0.4644 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 446/1588|| Totel iter 5210 || L: 3.1749 C: 3.5601||Batch time: 0.4534 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 456/1588|| Totel iter 5220 || L: 3.0463 C: 3.6037||Batch time: 0.4713 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 466/1588|| Totel iter 5230 || L: 3.1932 C: 3.8870||Batch time: 0.4588 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 476/1588|| Totel iter 5240 || L: 2.8956 C: 3.5377||Batch time: 0.4749 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 486/1588|| Totel iter 5250 || L: 3.0677 C: 3.7165||Batch time: 0.4721 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 496/1588|| Totel iter 5260 || L: 2.6789 C: 3.6504||Batch time: 0.4678 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 506/1588|| Totel iter 5270 || L: 2.7978 C: 3.6209||Batch time: 0.4744 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 516/1588|| Totel iter 5280 || L: 3.2543 C: 3.6356||Batch time: 0.4561 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 526/1588|| Totel iter 5290 || L: 2.7293 C: 3.5833||Batch time: 0.4603 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 536/1588|| Totel iter 5300 || L: 3.3388 C: 3.6254||Batch time: 0.4520 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 546/1588|| Totel iter 5310 || L: 3.0269 C: 3.7330||Batch time: 0.4683 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 556/1588|| Totel iter 5320 || L: 3.1745 C: 3.6118||Batch time: 0.4527 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 566/1588|| Totel iter 5330 || L: 3.3096 C: 3.5176||Batch time: 0.4773 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 576/1588|| Totel iter 5340 || L: 2.8607 C: 3.7595||Batch time: 0.4491 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 586/1588|| Totel iter 5350 || L: 2.8682 C: 3.5973||Batch time: 0.4548 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 596/1588|| Totel iter 5360 || L: 3.0152 C: 3.5348||Batch time: 0.4494 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 606/1588|| Totel iter 5370 || L: 3.3578 C: 3.5829||Batch time: 0.4622 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 616/1588|| Totel iter 5380 || L: 3.0230 C: 3.6085||Batch time: 0.4506 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 626/1588|| Totel iter 5390 || L: 2.8261 C: 3.5468||Batch time: 0.4615 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 636/1588|| Totel iter 5400 || L: 2.9580 C: 3.5402||Batch time: 0.4650 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 646/1588|| Totel iter 5410 || L: 3.2127 C: 3.6595||Batch time: 0.4522 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 656/1588|| Totel iter 5420 || L: 3.2125 C: 3.6398||Batch time: 0.4548 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 666/1588|| Totel iter 5430 || L: 3.2974 C: 3.5177||Batch time: 0.4528 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 676/1588|| Totel iter 5440 || L: 3.3220 C: 3.6149||Batch time: 0.4746 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 686/1588|| Totel iter 5450 || L: 2.9000 C: 3.5674||Batch time: 0.4517 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 696/1588|| Totel iter 5460 || L: 3.0903 C: 3.6307||Batch time: 0.4735 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 706/1588|| Totel iter 5470 || L: 2.8050 C: 3.5535||Batch time: 0.5023 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 716/1588|| Totel iter 5480 || L: 3.6012 C: 3.5663||Batch time: 0.5198 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 726/1588|| Totel iter 5490 || L: 2.9513 C: 3.5291||Batch time: 0.4513 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 736/1588|| Totel iter 5500 || L: 3.3378 C: 3.5641||Batch time: 0.4528 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 746/1588|| Totel iter 5510 || L: 2.9641 C: 3.7183||Batch time: 0.4744 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 756/1588|| Totel iter 5520 || L: 2.9664 C: 3.6257||Batch time: 0.4547 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 766/1588|| Totel iter 5530 || L: 3.0747 C: 3.6214||Batch time: 0.4601 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 776/1588|| Totel iter 5540 || L: 3.2457 C: 3.6658||Batch time: 0.4507 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 786/1588|| Totel iter 5550 || L: 3.6367 C: 3.5462||Batch time: 0.4675 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 796/1588|| Totel iter 5560 || L: 3.3492 C: 3.6173||Batch time: 0.4496 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 806/1588|| Totel iter 5570 || L: 3.0425 C: 3.5489||Batch time: 0.4563 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 816/1588|| Totel iter 5580 || L: 2.8744 C: 3.6925||Batch time: 0.4613 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 826/1588|| Totel iter 5590 || L: 3.1153 C: 3.6758||Batch time: 0.4531 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 836/1588|| Totel iter 5600 || L: 3.2651 C: 3.6665||Batch time: 0.4777 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 846/1588|| Totel iter 5610 || L: 2.9994 C: 3.5914||Batch time: 0.4550 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 856/1588|| Totel iter 5620 || L: 2.9458 C: 3.5671||Batch time: 0.4536 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 866/1588|| Totel iter 5630 || L: 2.7914 C: 3.6629||Batch time: 0.4513 sec. ||LR: 0.00400000
+Epoch:4 || epochiter: 876/1588|| Totel iter 5640 || L: 3.1476 C: 3.5682||Batch time: 0.4553 sec. ||LR: 0.00400000
